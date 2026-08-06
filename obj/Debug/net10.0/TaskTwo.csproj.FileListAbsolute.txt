@@ -1,0 +1,15 @@
+D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskTwo\bin\Debug\net10.0\TaskTwo.exe
+D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskTwo\bin\Debug\net10.0\TaskTwo.deps.json
+D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskTwo\bin\Debug\net10.0\TaskTwo.runtimeconfig.json
+D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskTwo\bin\Debug\net10.0\TaskTwo.dll
+D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskTwo\bin\Debug\net10.0\TaskTwo.pdb
+D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskTwo\obj\Debug\net10.0\TaskTwo.GeneratedMSBuildEditorConfig.editorconfig
+D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskTwo\obj\Debug\net10.0\TaskTwo.AssemblyInfoInputs.cache
+D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskTwo\obj\Debug\net10.0\TaskTwo.AssemblyInfo.cs
+D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskTwo\obj\Debug\net10.0\TaskTwo.csproj.CoreCompileInputs.cache
+D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskTwo\obj\Debug\net10.0\TaskTwo.sourcelink.json
+D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskTwo\obj\Debug\net10.0\TaskTwo.dll
+D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskTwo\obj\Debug\net10.0\refint\TaskTwo.dll
+D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskTwo\obj\Debug\net10.0\TaskTwo.pdb
+D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskTwo\obj\Debug\net10.0\TaskTwo.genruntimeconfig.cache
+D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskTwo\obj\Debug\net10.0\ref\TaskTwo.dll
