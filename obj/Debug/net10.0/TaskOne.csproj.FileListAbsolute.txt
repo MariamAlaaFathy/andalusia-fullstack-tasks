@@ -1,0 +1,15 @@
+D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskOne\bin\Debug\net10.0\TaskOne.exe
+D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskOne\bin\Debug\net10.0\TaskOne.deps.json
+D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskOne\bin\Debug\net10.0\TaskOne.runtimeconfig.json
+D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskOne\bin\Debug\net10.0\TaskOne.dll
+D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskOne\bin\Debug\net10.0\TaskOne.pdb
+D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskOne\obj\Debug\net10.0\TaskOne.GeneratedMSBuildEditorConfig.editorconfig
+D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskOne\obj\Debug\net10.0\TaskOne.AssemblyInfoInputs.cache
+D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskOne\obj\Debug\net10.0\TaskOne.AssemblyInfo.cs
+D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskOne\obj\Debug\net10.0\TaskOne.csproj.CoreCompileInputs.cache
+D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskOne\obj\Debug\net10.0\TaskOne.sourcelink.json
+D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskOne\obj\Debug\net10.0\TaskOne.dll
+D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskOne\obj\Debug\net10.0\refint\TaskOne.dll
+D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskOne\obj\Debug\net10.0\TaskOne.pdb
+D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskOne\obj\Debug\net10.0\TaskOne.genruntimeconfig.cache
+D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskOne\obj\Debug\net10.0\ref\TaskOne.dll
