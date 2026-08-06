@@ -1,0 +1,126 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskTwo\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0B910D84-4975-4A26-AE23-E54326E43AF3}|TaskTwo.csproj|d:\\mariam\\files\\college files\\andalusia academy\\andalusia-fullstack-tasks\\tasktwo\\rectangle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0B910D84-4975-4A26-AE23-E54326E43AF3}|TaskTwo.csproj|solutionrelative:rectangle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B910D84-4975-4A26-AE23-E54326E43AF3}|TaskTwo.csproj|d:\\mariam\\files\\college files\\andalusia academy\\andalusia-fullstack-tasks\\tasktwo\\circle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0B910D84-4975-4A26-AE23-E54326E43AF3}|TaskTwo.csproj|solutionrelative:circle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B910D84-4975-4A26-AE23-E54326E43AF3}|TaskTwo.csproj|d:\\mariam\\files\\college files\\andalusia academy\\andalusia-fullstack-tasks\\tasktwo\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0B910D84-4975-4A26-AE23-E54326E43AF3}|TaskTwo.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B910D84-4975-4A26-AE23-E54326E43AF3}|TaskTwo.csproj|d:\\mariam\\files\\college files\\andalusia academy\\andalusia-fullstack-tasks\\tasktwo\\triangle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0B910D84-4975-4A26-AE23-E54326E43AF3}|TaskTwo.csproj|solutionrelative:triangle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B910D84-4975-4A26-AE23-E54326E43AF3}|TaskTwo.csproj|d:\\mariam\\files\\college files\\andalusia academy\\andalusia-fullstack-tasks\\tasktwo\\iresizable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0B910D84-4975-4A26-AE23-E54326E43AF3}|TaskTwo.csproj|solutionrelative:iresizable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B910D84-4975-4A26-AE23-E54326E43AF3}|TaskTwo.csproj|d:\\mariam\\files\\college files\\andalusia academy\\andalusia-fullstack-tasks\\tasktwo\\idrawable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0B910D84-4975-4A26-AE23-E54326E43AF3}|TaskTwo.csproj|solutionrelative:idrawable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Circle.cs",
+              "DocumentMoniker": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskTwo\\Circle.cs",
+              "RelativeDocumentMoniker": "Circle.cs",
+              "ToolTip": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskTwo\\Circle.cs",
+              "RelativeToolTip": "Circle.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-06T13:53:23.548Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IDrawable.cs",
+              "DocumentMoniker": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskTwo\\IDrawable.cs",
+              "RelativeDocumentMoniker": "IDrawable.cs",
+              "ToolTip": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskTwo\\IDrawable.cs",
+              "RelativeToolTip": "IDrawable.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-06T13:47:12.218Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskTwo\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskTwo\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAkwCAAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-06T13:46:07.483Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Triangle.cs",
+              "DocumentMoniker": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskTwo\\Triangle.cs",
+              "RelativeDocumentMoniker": "Triangle.cs",
+              "ToolTip": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskTwo\\Triangle.cs",
+              "RelativeToolTip": "Triangle.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAACdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-06T14:19:50.06Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Rectangle.cs",
+              "DocumentMoniker": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskTwo\\Rectangle.cs",
+              "RelativeDocumentMoniker": "Rectangle.cs",
+              "ToolTip": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskTwo\\Rectangle.cs*",
+              "RelativeToolTip": "Rectangle.cs*",
+              "ViewState": "AgIAABsAAAAAAAAAAAAowDMAAABnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-06T13:53:23.75Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IResizable.cs",
+              "DocumentMoniker": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskTwo\\IResizable.cs",
+              "RelativeDocumentMoniker": "IResizable.cs",
+              "ToolTip": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskTwo\\IResizable.cs",
+              "RelativeToolTip": "IResizable.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-06T14:25:56.89Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
