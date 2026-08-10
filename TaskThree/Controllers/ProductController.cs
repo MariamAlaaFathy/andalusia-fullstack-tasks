@@ -99,8 +99,15 @@ namespace FullStackSession6.Controllers
             }
             else
             {
-                _productService.UpdateProductName(id, product.Name);
-                return NoContent();
+                if (string.IsNullOrEmpty(product.Name))
+                {
+                    return BadRequest("Product name cannot be null or empty.");
+                }
+                else
+                {
+                    _productService.UpdateProductName(id, product.Name);
+                    return Ok(product);
+                }
             }
         }
     }
