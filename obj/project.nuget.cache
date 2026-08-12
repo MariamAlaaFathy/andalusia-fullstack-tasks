@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "dgSpecHash": "KSbtHHBQUfQ=",
+  "success": true,
+  "projectFilePath": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskFour\\TaskFour.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Mariam Alaa\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.10\\microsoft.aspnetcore.openapi.10.0.10.nupkg.sha512",
+    "C:\\Users\\Mariam Alaa\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "Package 'Microsoft.OpenApi' 2.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-v5pm-xwqc-g5wc",
+      "projectPath": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskFour\\TaskFour.csproj",
+      "warningLevel": 1,
+      "filePath": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskFour\\TaskFour.csproj",
+      "libraryId": "Microsoft.OpenApi",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
+}
