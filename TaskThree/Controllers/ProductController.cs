@@ -1,5 +1,4 @@
 ﻿using FullStackSession6.Model;
-using FullStackSession6.Repositories.Interfaces;
 using FullStackSession6.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
