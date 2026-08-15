@@ -1,0 +1,442 @@
+{
+  "info": {
+    "_postman_id": "625d0c4b-0253-4e9c-966f-5b362954095a",
+    "name": "Tasks Requests 2",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "34265878"
+  },
+  "item": [
+    {
+      "name": "Valid Requests",
+      "item": [
+        {
+          "name": "V1",
+          "item": [
+            {
+              "name": "Get Tasks",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:7144/api/v1/tasks",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "7144",
+                  "path": [
+                    "api",
+                    "v1",
+                    "tasks"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Task By Id",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:7144/api/v1/tasks/1",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "7144",
+                  "path": [
+                    "api",
+                    "v1",
+                    "tasks",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Create Task",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"Id\": 1,\r\n    \"Title\": \"Task 1\",\r\n    \"IsCompleted\": false\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:7144/api/v1/tasks",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "7144",
+                  "path": [
+                    "api",
+                    "v1",
+                    "tasks"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update Task By Id",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"Title\": \"Task 2\",\r\n    \"IsCompleted\": true\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:7144/api/v1/tasks/1",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "7144",
+                  "path": [
+                    "api",
+                    "v1",
+                    "tasks",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete Task By Id",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:7144/api/v1/tasks/1",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "7144",
+                  "path": [
+                    "api",
+                    "v1",
+                    "tasks",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "V2",
+          "item": [
+            {
+              "name": "Get Tasks",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:7144/api/v2/tasks",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "7144",
+                  "path": [
+                    "api",
+                    "v2",
+                    "tasks"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Task By Id",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:7144/api/v2/tasks/1",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "7144",
+                  "path": [
+                    "api",
+                    "v2",
+                    "tasks",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Create Task",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"Id\": 1,\r\n    \"Title\": \"Task 1\",\r\n    \"Status\": \"in-progress\",\r\n    \"DueDate\": \"2026-08-16T23:59:00Z\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:7144/api/v2/tasks",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "7144",
+                  "path": [
+                    "api",
+                    "v2",
+                    "tasks"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update Task By Id",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"Title\": \"Task 1\",\r\n    \"Status\": \"completed\",\r\n    \"DueDate\": \"2026-08-16T23:59:00Z\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:7144/api/v2/tasks/1",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "7144",
+                  "path": [
+                    "api",
+                    "v2",
+                    "tasks",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete Task By Id",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://localhost:7144/api/v2/tasks/1",
+                  "protocol": "https",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "7144",
+                  "path": [
+                    "api",
+                    "v2",
+                    "tasks",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Invalid Requests",
+      "item": [
+        {
+          "name": "Get Not Found Task",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:7144/api/v1/tasks/999",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7144",
+              "path": [
+                "api",
+                "v1",
+                "tasks",
+                "999"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Task With Duplicate Title",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Title\": \"Task 1\",\r\n    \"IsCompleted\": false\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:7144/api/v1/tasks",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7144",
+              "path": [
+                "api",
+                "v1",
+                "tasks"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Task With Past DueDate",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Title\": \"Task 3\",\r\n    \"Status\": \"in-progress\",\r\n    \"DueDate\": \"2026-08-11T14:30:00Z\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:7144/api/v2/tasks",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7144",
+              "path": [
+                "api",
+                "v2",
+                "tasks"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
