@@ -1,0 +1,530 @@
+{
+  "info": {
+    "_postman_id": "c09f86b5-968c-45ec-8843-eb1662463af3",
+    "name": "Tasks Requests 3",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "34265878"
+  },
+  "item": [
+    {
+      "name": "Valid Requests",
+      "item": [
+        {
+          "name": "Get Tasks (defaults - page 1, pageSize 20)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:7096/api/v2/tasks",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7096",
+              "path": [
+                "api",
+                "v2",
+                "tasks"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Task By Id",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:7096/api/v2/tasks/1",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7096",
+              "path": [
+                "api",
+                "v2",
+                "tasks",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Task",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Id\": 1,\r\n    \"Title\": \"Task 5\",\r\n    \"isCompleted\": true,\r\n    \"Status\": \"in-progress\",\r\n    \"DueDate\": \"2026-09-16T23:59:00Z\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:7096/api/v2/tasks",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7096",
+              "path": [
+                "api",
+                "v2",
+                "tasks"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Task By Id",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Title\": \"Task 1\",\r\n    \"Status\": \"completed\",\r\n    \"DueDate\": \"2026-08-16T23:59:00Z\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:7096/api/v2/tasks/1",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7096",
+              "path": [
+                "api",
+                "v2",
+                "tasks",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Task By Id",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:7096/api/v2/tasks/1",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7096",
+              "path": [
+                "api",
+                "v2",
+                "tasks",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Search + Filter + Page + Sort",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:7096/api/v2/tasks?search=meeting&isCompleted=false&page=1&pageSize=5&sortBy=title",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7096",
+              "path": [
+                "api",
+                "v2",
+                "tasks"
+              ],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "meeting"
+                },
+                {
+                  "key": "isCompleted",
+                  "value": "false"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "5"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "title"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Filter by Status, sorted descending",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:7096/api/v2/tasks?status=pending&sortBy=title&order=desc",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7096",
+              "path": [
+                "api",
+                "v2",
+                "tasks"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "pending"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "title"
+                },
+                {
+                  "key": "order",
+                  "value": "desc"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Page 2 PageSize 3",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:7096/api/v2/tasks?page=2&pageSize=3",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7096",
+              "path": [
+                "api",
+                "v2",
+                "tasks"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "2"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "3"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "BONUS - CreatedAfter / CreatedBefore date range",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:7096/api/v2/tasks?createdAfter=2026-08-14T00:00:00Z&createdBefore=2026-08-15T23:43:00Z",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7096",
+              "path": [
+                "api",
+                "v2",
+                "tasks"
+              ],
+              "query": [
+                {
+                  "key": "createdAfter",
+                  "value": "2026-08-14T00:00:00Z"
+                },
+                {
+                  "key": "createdBefore",
+                  "value": "2026-08-15T23:43:00Z"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "BONUS - Date range + search + pagination combined",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:7096/api/v2/tasks?search=meeting&createdAfter=2026-08-14T00:00:00Z&createdBefore=2026-08-15T23:43:00Z&page=1&pageSize=5",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7096",
+              "path": [
+                "api",
+                "v2",
+                "tasks"
+              ],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "meeting"
+                },
+                {
+                  "key": "createdAfter",
+                  "value": "2026-08-14T00:00:00Z"
+                },
+                {
+                  "key": "createdBefore",
+                  "value": "2026-08-15T23:43:00Z"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "5"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Edge Cases",
+      "item": [
+        {
+          "name": "Unknown sortBy falls back to default (no crash)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:7096/api/v2/tasks?sortBy=notARealField",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7096",
+              "path": [
+                "api",
+                "v2",
+                "tasks"
+              ],
+              "query": [
+                {
+                  "key": "sortBy",
+                  "value": "notARealField"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "PageSize over 100 gets capped",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:7096/api/v2/tasks?pageSize=500",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7096",
+              "path": [
+                "api",
+                "v2",
+                "tasks"
+              ],
+              "query": [
+                {
+                  "key": "pageSize",
+                  "value": "500"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Search with no matches (empty data, correct metadata)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:7096/api/v2/tasks?search=zzznomatch",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7096",
+              "path": [
+                "api",
+                "v2",
+                "tasks"
+              ],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "zzznomatch"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Invalid Requests",
+      "item": [
+        {
+          "name": "Get Not Found Task",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:7096/api/v1/tasks/999",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7096",
+              "path": [
+                "api",
+                "v1",
+                "tasks",
+                "999"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Task With Duplicate Title",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Title\": \"Task 1\",\r\n    \"IsCompleted\": false\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:7096/api/v1/tasks",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7096",
+              "path": [
+                "api",
+                "v1",
+                "tasks"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Task With Past DueDate",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"Title\": \"Task 3\",\r\n    \"Status\": \"in-progress\",\r\n    \"DueDate\": \"2026-08-11T14:30:00Z\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:7096/api/v2/tasks",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7096",
+              "path": [
+                "api",
+                "v2",
+                "tasks"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
