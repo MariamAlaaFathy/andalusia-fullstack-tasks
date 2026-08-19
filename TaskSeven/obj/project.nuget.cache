@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "28uk3CFuXcM=",
+  "success": true,
+  "projectFilePath": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskSeven\\TaskSeven.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Mariam Alaa\\.nuget\\packages\\asp.versioning.abstractions\\10.2.1\\asp.versioning.abstractions.10.2.1.nupkg.sha512",
+    "C:\\Users\\Mariam Alaa\\.nuget\\packages\\asp.versioning.http\\10.2.1\\asp.versioning.http.10.2.1.nupkg.sha512",
+    "C:\\Users\\Mariam Alaa\\.nuget\\packages\\asp.versioning.mvc\\10.2.1\\asp.versioning.mvc.10.2.1.nupkg.sha512",
+    "C:\\Users\\Mariam Alaa\\.nuget\\packages\\asp.versioning.mvc.apiexplorer\\10.2.1\\asp.versioning.mvc.apiexplorer.10.2.1.nupkg.sha512",
+    "C:\\Users\\Mariam Alaa\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.11\\microsoft.aspnetcore.openapi.10.0.11.nupkg.sha512",
+    "C:\\Users\\Mariam Alaa\\.nuget\\packages\\microsoft.openapi\\2.7.5\\microsoft.openapi.2.7.5.nupkg.sha512"
+  ],
+  "logs": []
+}
