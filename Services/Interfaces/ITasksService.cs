@@ -5,10 +5,10 @@ namespace FullStackSession6.Services.Interfaces
 {
     public interface ITasksService
     {
-        public PagedResult<Tasks> GetTasks(TaskFilterParams paginationParams);
-        public Tasks GetTaskById(int id);
-        public Tasks CreateTask(Tasks task);
-        public Tasks UpdateTask(int id, Tasks task);
-        public void DeleteTask(int id);
+        public Task<PagedResult<Tasks>> GetTasks(TaskFilterParams paginationParams);
+        public Task<Tasks> GetTaskById(int id);
+        public Task<Tasks> CreateTask(Tasks task);
+        public Task<Tasks> UpdateTask(int id, Tasks task);
+        public Task DeleteTask(int id);
     }
 }

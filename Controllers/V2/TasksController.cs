@@ -2,6 +2,7 @@
 using FullStackSession6.Model;
 using FullStackSession6.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
 using TaskSeven.Model;
 
 namespace TaskFive.Controllers.v2
@@ -19,38 +20,60 @@ namespace TaskFive.Controllers.v2
         }
 
         [HttpGet]
-        public IActionResult GetTasks([FromQuery] TaskFilterParams paginationParams)
+        public async Task<IActionResult> GetTasks([FromQuery] TaskFilterParams paginationParams)
         {
-            return Ok(_taskService.GetTasks(paginationParams));
+            var tasks = await _taskService.GetTasks(paginationParams);
+            return Ok(tasks);
         }
 
         [HttpGet]
         [Route("{id}")]
-        public IActionResult GetTaskById(int id)
+        public async Task<IActionResult> GetTaskById(int id)
         {
-            return Ok(_taskService.GetTaskById(id));
+            var task = await _taskService.GetTaskById(id);
+            return Ok(new
+            {
+                task.Id,
+                task.Title,
+                task.IsCompleted,
+                task.TaskStatus,
+                task.DueDate,
+                task.CreatedAt,
+                task.UserId,
+                task.User?.Name,
+            });
         }
 
         [HttpPost]
-        public IActionResult CreateTask([FromBody] Tasks task)
+        public async Task<IActionResult> CreateTask([FromBody] Tasks task)
         {
-            _taskService.CreateTask(task);
+            await _taskService.CreateTask(task);
             return CreatedAtAction(nameof(CreateTask), new { id = task.Id }, task);
         }
 
         [HttpPut]
         [Route("{id}")]
-        public IActionResult UpdateTask(int id, [FromBody] Tasks task)
+        public async Task<IActionResult> UpdateTask(int id, [FromBody] Tasks task)
         {
-            _taskService.UpdateTask(id, task);
-            return Ok(task);
+            await _taskService.UpdateTask(id, task);
+            return Ok(new
+            {
+                task.Id,
+                task.Title,
+                task.IsCompleted,
+                task.TaskStatus,
+                task.DueDate,
+                task.CreatedAt,
+                task.UserId,
+                task.User?.Name,
+            });
         }
 
         [HttpDelete]
         [Route("{id}")]
-        public IActionResult DeleteTask(int id)
+        public async Task<IActionResult> DeleteTask(int id)
         {
-            _taskService.DeleteTask(id);
+            await _taskService.DeleteTask(id);
             return NoContent();
         }
     }

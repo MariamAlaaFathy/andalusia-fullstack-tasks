@@ -3,8 +3,14 @@ using FullStackSession6.Repositories;
 using FullStackSession6.Repositories.Interfaces;
 using FullStackSession6.Services;
 using FullStackSession6.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using TaskFive.Middleware;
 using TaskFour.Middleware;
+using TaskSeven.Data;
+using TaskSeven.Repositories;
+using TaskSeven.Repositories.Interfaces;
+using TaskSeven.Services;
+using TaskSeven.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,8 +18,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddSingleton<ITasksRepository, TasksRepository>();
-builder.Services.AddSingleton<ITasksService, TasksService>();
+builder.Services.AddScoped<IUsersService, UsersService>();
+builder.Services.AddScoped<IUsersRepository, UsersRepository>();
+
+builder.Services.AddScoped<ITasksService, TasksService>();
+builder.Services.AddScoped<ITasksRepository, TasksRepository>();
 
 builder.Services.AddApiVersioning(options =>
 {
@@ -24,6 +33,11 @@ builder.Services.AddApiVersioning(options =>
 {
     options.GroupNameFormat = "'v'VVV";
     options.SubstituteApiVersionInUrl = true;
+});
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
 });
 
 var app = builder.Build();
