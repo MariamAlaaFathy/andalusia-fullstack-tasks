@@ -1,28 +1,24 @@
 ﻿using FullStackSession6.Model;
 using FullStackSession6.Repositories.Interfaces;
-using TaskFour.Middleware.Exceptions;
+using Microsoft.EntityFrameworkCore;
+using TaskSeven.Data;
+using TaskSeven.Exceptions;
 using TaskSeven.Model;
 
 namespace FullStackSession6.Repositories
 {
     public class TasksRepository : ITasksRepository
     {
-        private List<Tasks> _tasks = new List<Tasks>() {
-            new Tasks(1,"Meeting 1", false, "In Progress", DateTime.Now.AddDays(7)),
-            new Tasks(2,"Task 1", true, "Completed", DateTime.Now.AddDays(3)),
-            new Tasks(3,"Meeting 2", false, "Pending", DateTime.Now.AddDays(5)),
-            new Tasks(4,"Task 2", false, "In Progress", DateTime.Now.AddDays(10)),
-            new Tasks(5,"Meeting 3", true, "Completed", DateTime.Now.AddDays(1)),
-            new Tasks(6,"Meeting 4", false, "Pending", DateTime.Now.AddDays(7)),
-            new Tasks(7,"Task 3", true, "Completed", DateTime.Now.AddDays(3)),
-            new Tasks(8,"Meeting 5", false, "In Progress", DateTime.Now.AddDays(5)),
-            new Tasks(9,"Task 4", false, "Pending", DateTime.Now.AddDays(10)),
-            new Tasks(10,"Meeting 6", true, "Completed", DateTime.Now.AddDays(1)),
-        };
+        private readonly AppDbContext _dbcontext;
 
-        public PagedResult<Tasks> GetTasks(TaskFilterParams paginationParams)
+        public TasksRepository(AppDbContext dbcontext)
         {
-            IEnumerable<Tasks> tasks = _tasks;
+            _dbcontext = dbcontext;
+        }
+
+        public async Task<PagedResult<Tasks>> GetTasks(TaskFilterParams paginationParams)
+        {
+            IEnumerable<Tasks> tasks = await _dbcontext.Tasks.ToListAsync();
 
             if (!string.IsNullOrEmpty(paginationParams.Search))
             {
@@ -34,9 +30,9 @@ namespace FullStackSession6.Repositories
                 tasks = tasks.Where(t => t.IsCompleted == paginationParams.IsCompleted.Value).ToList();
             }
 
-            if (!string.IsNullOrEmpty(paginationParams.Status))
+            if (!string.IsNullOrEmpty(paginationParams.TaskStatus))
             {
-                tasks = tasks.Where(t => t.Status!.Equals(paginationParams.Status, StringComparison.OrdinalIgnoreCase)).ToList();
+                tasks = tasks.Where(t => t.TaskStatus!.Equals(paginationParams.TaskStatus, StringComparison.OrdinalIgnoreCase)).ToList();
             }
 
             if (paginationParams.CreatedAfter.HasValue)
@@ -55,7 +51,7 @@ namespace FullStackSession6.Repositories
                 ["id"] = t => t.Id,
                 ["title"] = t => t.Title!,
                 ["iscompleted"] = t => t.IsCompleted,
-                ["status"] = t => t.Status!,
+                ["taskstatus"] = t => t.TaskStatus!,
                 ["duedate"] = t => t.DueDate,
                 ["createdat"] = t => t.CreatedAt,
             };
@@ -68,39 +64,39 @@ namespace FullStackSession6.Repositories
                     : tasks.OrderBy(keySelector);
             }
 
-            tasks = tasks.Skip((paginationParams.Page - 1) * paginationParams.PageSize).Take(paginationParams.PageSize).ToList();
+            IEnumerable<Tasks> filteredTasks = tasks.Skip((paginationParams.Page - 1) * paginationParams.PageSize).Take(paginationParams.PageSize).ToList();
             return new PagedResult<Tasks>
             {
-                Data = tasks,
+                Data = filteredTasks,
                 Page = paginationParams.Page,
                 PageSize = paginationParams.PageSize,
-                TotalCount = _tasks.Count
+                TotalCount = tasks.Count()
             };
         }
 
-        public Tasks GetTaskById(int id)
+        public async Task<Tasks> GetTaskById(int id)
         {
             if (id <= 0)
             {
                 throw new InvalidIdException("You have provided an invalid task ID.");
             }
-            else if (_tasks.FirstOrDefault(p => p.Id == id) == null)
+            else if (await _dbcontext.Tasks.FindAsync(id) == null)
             {
                 throw new NotFoundException("The requested task could not be found.");
             }
             else
             {
-                return _tasks.FirstOrDefault(p => p.Id == id)!;
+                return await _dbcontext.Tasks.Include(t => t.User).Where(t => t.Id == id).SingleAsync();
             }
         }
 
-        public Tasks CreateTask(Tasks task)
+        public async Task<Tasks> CreateTask(Tasks task)
         {
             if (task == null)
             {
                 throw new ArgumentNullException(nameof(task));
             }
-            else if (_tasks.FirstOrDefault(p => p.Title == task.Title) != null)
+            else if (await _dbcontext.Tasks.AnyAsync(t => t.Title == task.Title))
             {
                 throw new ConflictException("A task with the same title already exists.");
             }
@@ -110,22 +106,15 @@ namespace FullStackSession6.Repositories
             }
             else
             {
-                for (int i = 1; i <= _tasks.Count + 1; i++)
-                {
-                    if (_tasks.FirstOrDefault(p => p.Id == i) == null)
-                    {
-                        task.Id = i;
-                        break;
-                    }
-                }
-                _tasks.Add(task);
-                return task;
+                _dbcontext.Tasks.Add(task);
+                await _dbcontext.SaveChangesAsync();
+                return await _dbcontext.Tasks.Include(t => t.User).Where(t => t.Id == task.Id).SingleAsync();
             }
         }
 
-        public Tasks UpdateTask(int id, Tasks task)
+        public async Task<Tasks> UpdateTask(int id, Tasks task)
         {
-            Tasks existingTask = _tasks.FirstOrDefault(p => p.Id == id)!;
+            var existingTask = await _dbcontext.Tasks.FindAsync(id);
             if (id <= 0)
             {
                 throw new InvalidIdException("You have provided an invalid task ID.");
@@ -134,7 +123,7 @@ namespace FullStackSession6.Repositories
             {
                 throw new NotFoundException("The requested task could not be found.");
             }
-            else if (_tasks.FirstOrDefault(p => p.Title == task.Title && p.Id != id) != null)
+            else if (await _dbcontext.Tasks.AnyAsync(t => t.Title == task.Title) && (await _dbcontext.Tasks.FirstOrDefaultAsync(t => t.Title == task.Title)).Id != id)
             {
                 throw new ConflictException("A task with the same title already exists.");
             }
@@ -144,26 +133,30 @@ namespace FullStackSession6.Repositories
             }
             else
             {
-                if (task.Id == 0) task.Id = existingTask.Id;
-                _tasks.Remove(existingTask);
-                _tasks.Add(task);
-                return task;
+                if (task.Title != null) existingTask.Title = task.Title;
+                if (task.IsCompleted != false) existingTask.IsCompleted = task.IsCompleted;
+                if (task.TaskStatus != null) existingTask.TaskStatus = task.TaskStatus;
+                if (task.DueDate == DateTime.MinValue) existingTask.DueDate = task.DueDate;
+                if (task.UserId != 0) existingTask.UserId = task.UserId;
+                await _dbcontext.SaveChangesAsync();
+                return await _dbcontext.Tasks.Include(t => t.User).Where(t => t.Id == id).SingleAsync();
             }
         }
 
-        public void DeleteTask(int id)
+        public async Task DeleteTask(int id)
         {
             if (id <= 0)
             {
                 throw new InvalidIdException("You have provided an invalid task ID.");
             }
-            else if (_tasks.FirstOrDefault(p => p.Id == id) == null)
+            else if (await _dbcontext.Tasks.FindAsync(id) == null)
             {
                 throw new NotFoundException("The requested task could not be found.");
             }
             else
             {
-                _tasks.RemoveAll(p => p.Id == id);
+                _dbcontext.Tasks.Remove(await _dbcontext.Tasks.FindAsync(id));
+                await _dbcontext.SaveChangesAsync();
             }
         }
     }

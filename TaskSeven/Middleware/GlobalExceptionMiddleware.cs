@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TaskFour.Middleware.Exceptions;
+using TaskSeven.Exceptions;
 
 namespace TaskFour.Middleware
 {

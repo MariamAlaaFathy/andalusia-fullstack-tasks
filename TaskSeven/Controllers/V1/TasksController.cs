@@ -19,9 +19,9 @@ namespace TaskFive.Controllers.v1
         }
 
         [HttpGet]
-        public IActionResult GetTasks([FromQuery] TaskFilterParams paginationParams)
+        public async Task<IActionResult> GetTasks([FromQuery] TaskFilterParams paginationParams)
         {
-            var tasks = _taskService.GetTasks(paginationParams);
+            var tasks = await _taskService.GetTasks(paginationParams);
             var projected = new PagedResult<object>
             {
                 Data = tasks.Data.Select(t => new { id = t.Id, title = t.Title, isCompleted = t.IsCompleted }),
@@ -34,32 +34,32 @@ namespace TaskFive.Controllers.v1
 
         [HttpGet]
         [Route("{id}")]
-        public IActionResult GetTaskById(int id)
+        public async Task<IActionResult> GetTaskById(int id)
         {
-            Tasks task = _taskService.GetTaskById(id);
+            Tasks task = await _taskService.GetTaskById(id);
             return Ok(new { id = task.Id, title = task.Title, isCompleted = task.IsCompleted });
         }
 
         [HttpPost]
-        public IActionResult CreateTask([FromBody] Tasks task)
+        public async Task<IActionResult> CreateTask([FromBody] Tasks task)
         {
-            _taskService.CreateTask(task);
+            await _taskService.CreateTask(task);
             return CreatedAtAction(nameof(CreateTask), new { id = task.Id, title = task.Title, isCompleted = task.IsCompleted });
         }
 
         [HttpPut]
         [Route("{id}")]
-        public IActionResult UpdateTask(int id, [FromBody] Tasks task)
+        public async Task<IActionResult> UpdateTask(int id, [FromBody] Tasks task)
         {
-            _taskService.UpdateTask(id, task);
+            await _taskService.UpdateTask(id, task);
             return Ok(new { id = task.Id, title = task.Title, isCompleted = task.IsCompleted });
         }
 
         [HttpDelete]
         [Route("{id}")]
-        public IActionResult DeleteTask(int id)
+        public async Task<IActionResult> DeleteTask(int id)
         {
-            _taskService.DeleteTask(id);
+            await _taskService.DeleteTask(id);
             return NoContent();
         }
     }

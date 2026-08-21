@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using TaskSeven.Model;
 
 namespace FullStackSession6.Model
 {
@@ -8,18 +9,16 @@ namespace FullStackSession6.Model
         [Required]
         public string? Title { get; set; }
 
-        public bool IsCompleted { get; set; }
-        public string? Status { get; set; }
-        public DateTime DueDate { get; set; } = DateTime.Now.AddDays(1);
+        public bool IsCompleted { get; set; } = false;
+        public string? TaskStatus { get; set; } = "Pending"; // Pending, In Progress, Completed
+        [Required]
+        public DateTime DueDate { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
-        public Tasks(int id, string? title, bool isCompleted, string? status, DateTime dueDate)
-        {
-            Id = id;
-            Title = title;
-            IsCompleted = isCompleted;
-            Status = status;
-            DueDate = dueDate;
-        }
+        // Foreign Key
+        public int UserId { get; set; }
+
+        // Navigation property
+        public Users? User { get; set; }
     }
 }

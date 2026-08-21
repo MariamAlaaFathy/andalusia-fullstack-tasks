@@ -7,35 +7,35 @@ namespace FullStackSession6.Services
 {
     public class TasksService : ITasksService
     {
-        private ITasksRepository _repo;
-        public TasksService(ITasksRepository repo)
+        private ITasksRepository _taskRepository;
+        public TasksService(ITasksRepository taskRepository)
         {
-            _repo = repo;
+            _taskRepository = taskRepository;
         }
 
-        public PagedResult<Tasks> GetTasks(TaskFilterParams paginationParams)
+        public async Task<PagedResult<Tasks>> GetTasks(TaskFilterParams paginationParams)
         {
-            return _repo.GetTasks(paginationParams);
+            return await _taskRepository.GetTasks(paginationParams);
         }
 
-        public Tasks GetTaskById(int id)
+        public async Task<Tasks> GetTaskById(int id)
         {
-            return _repo.GetTaskById(id);
+            return await _taskRepository.GetTaskById(id);
         }
 
-        public Tasks CreateTask(Tasks task)
+        public async Task<Tasks> CreateTask(Tasks task)
         {
-            return _repo.CreateTask(task);
+            return await _taskRepository.CreateTask(task);
         }
 
-        public Tasks UpdateTask(int id, Tasks task)
+        public async Task<Tasks> UpdateTask(int id, Tasks task)
         {
-            return _repo.UpdateTask(id, task);
+            return await _taskRepository.UpdateTask(id, task);
         }
 
-        public void DeleteTask(int id)
+        public async Task DeleteTask(int id)
         {
-            _repo.DeleteTask(id);
+            await _taskRepository.DeleteTask(id);
         }
     }
 }
