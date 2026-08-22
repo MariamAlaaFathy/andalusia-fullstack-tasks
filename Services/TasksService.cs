@@ -2,7 +2,6 @@
 using FullStackSession6.Model;
 using FullStackSession6.Repositories.Interfaces;
 using FullStackSession6.Services.Interfaces;
-using Microsoft.EntityFrameworkCore;
 using TaskEight.DTOs;
 using TaskEight.Exceptions;
 using TaskEight.Model;
@@ -19,9 +18,16 @@ namespace FullStackSession6.Services
             _mapper = mapper;
         }
 
-        public async Task<PagedResult<Tasks>> GetTasks(TaskFilterParams paginationParams)
+        public async Task<PagedResult<TaskSummaryDTO>> GetTasks(TaskFilterParams paginationParams)
         {
-            return await _taskRepository.GetTasks(paginationParams);
+            var tasks = await _taskRepository.GetTasks(paginationParams);
+            return new PagedResult<TaskSummaryDTO>
+            {
+                Data = _mapper.Map<List<TaskSummaryDTO>>(tasks.Data),
+                Page = tasks.Page,
+                PageSize = tasks.PageSize,
+                TotalCount = tasks.TotalCount
+            }; ;
         }
 
         public async Task<TasksDTO> GetTaskById(int id)
@@ -55,7 +61,7 @@ namespace FullStackSession6.Services
             return await _taskRepository.GetTaskByTitle(title);
         }
 
-        public async Task<TasksDTO> CreateTask(Tasks task)
+        public async Task<TasksDTO> CreateTask(CreateTaskRequest task)
         {
             if (task == null)
             {
@@ -69,14 +75,13 @@ namespace FullStackSession6.Services
             {
                 throw new DueDateInPastException("The due date cannot be in the past.");
             }
-            task.Id = default;
-            task.CreatedAt = default;
-            var createdTask = await _taskRepository.CreateTask(task);
-            var taskDTO = _mapper.Map<TasksDTO>(createdTask);
+            var mappedTask = _mapper.Map<Tasks>(task);
+            var created = await _taskRepository.CreateTask(mappedTask);
+            var taskDTO = _mapper.Map<TasksDTO>(created);
             return taskDTO;
         }
 
-        public async Task<TasksDTO> UpdateTask(int id, Tasks task)
+        public async Task<TasksDTO> UpdateTask(int id, UpdateTaskRequest task)
         {
             if (id <= 0)
             {
@@ -86,7 +91,8 @@ namespace FullStackSession6.Services
             {
                 throw new ArgumentNullException(nameof(task));
             }
-            var existingTask = await _taskRepository.UpdateTask(id, task);
+            var mappedTask = _mapper.Map<Tasks>(task);
+            var existingTask = await _taskRepository.UpdateTask(id, mappedTask);
             var taskDTO = _mapper.Map<TasksDTO>(existingTask);
             return taskDTO;
         }

@@ -1,6 +1,5 @@
 D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskEight\bin\Debug\net10.0\appsettings.Development.json
 D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskEight\bin\Debug\net10.0\appsettings.json
-D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskEight\bin\Debug\net10.0\TaskSevenPostman.json
 D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskEight\bin\Debug\net10.0\TaskEight.staticwebassets.endpoints.json
 D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskEight\bin\Debug\net10.0\TaskEight.exe
 D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskEight\bin\Debug\net10.0\TaskEight.deps.json
@@ -171,3 +170,4 @@ D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskEi
 D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskEight\obj\Debug\net10.0\ref\TaskEight.dll
 D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskEight\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskEight\bin\Debug\net10.0\AutoMapper.dll
+D:\Mariam\Files\College Files\Andalusia Academy\andalusia-fullstack-tasks\TaskEight\bin\Debug\net10.0\TaskEightPostman.json

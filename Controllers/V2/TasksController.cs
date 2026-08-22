@@ -41,15 +41,15 @@ namespace TaskFive.Controllers.v2
         }
 
         [HttpPost]
-        public async Task<ActionResult<TasksDTO>> CreateTask([FromBody] Tasks task)
+        public async Task<ActionResult<TasksDTO>> CreateTask([FromBody] CreateTaskRequest task)
         {
-            
-            return CreatedAtAction(nameof(CreateTask), new { id = task.Id }, await _taskService.CreateTask(task));
+            var createdTask = await _taskService.CreateTask(task);
+            return CreatedAtAction(nameof(CreateTask), new { id = createdTask.Id }, createdTask);
         }
 
         [HttpPut]
         [Route("{id}")]
-        public async Task<ActionResult<TasksDTO>> UpdateTask(int id, [FromBody] Tasks task)
+        public async Task<ActionResult<TasksDTO>> UpdateTask(int id, [FromBody] UpdateTaskRequest task)
         {
             return Ok(await _taskService.UpdateTask(id, task));
         }
