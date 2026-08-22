@@ -1,7 +1,7 @@
 {
   "info": {
-    "_postman_id": "4391c804-6671-4c36-933c-9110a7e2a472",
-    "name": "Task Seven",
+    "_postman_id": "e129f861-2585-4e27-963f-2eef7f7f036f",
+    "name": "Task Eight",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "34265878"
   },
@@ -296,13 +296,48 @@
           "response": []
         },
         {
+          "name": "Get Task Summary By Id",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:7096/api/v2/tasks/summary/4",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7096",
+              "path": [
+                "api",
+                "v2",
+                "tasks",
+                "summary",
+                "4"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "Create Task",
           "request": {
             "method": "POST",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"Title\": \"Task 1\",\r\n    \"isCompleted\": false,\r\n    \"TaskStatus\": \"in-progress\",\r\n    \"DueDate\": \"2026-09-16T23:59:00Z\",\r\n    \"UserId\": 1\r\n}",
+              "raw": "{\r\n    \"Id\": 7,\r\n    \"Title\": \"Task 4\",\r\n    \"isCompleted\": false,\r\n    \"TaskStatus\": \"in-progress\",\r\n    \"DueDate\": \"2026-09-16T23:59:00Z\",\r\n    \"CreatedAt\": \"2026-08-22T23:59:00Z\",\r\n    \"UserId\": 2\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -332,7 +367,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"Title\": \"Task 1\",\r\n    \"isCompleted\": true,\r\n    \"taskStatus\": \"Completed\",\r\n    \"DueDate\": \"2026-08-22T23:59:00Z\"\r\n}",
+              "raw": "{\r\n    \"Id\": 7,\r\n    \"Title\": \"Task 1\",\r\n    \"isCompleted\": true,\r\n    \"taskStatus\": \"Completed\",\r\n    \"DueDate\": \"2026-08-22T23:59:00Z\",\r\n    \"CreatedAt\": \"2026-08-22T23:59:00Z\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"

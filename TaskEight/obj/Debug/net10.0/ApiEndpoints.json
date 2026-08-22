@@ -195,7 +195,7 @@
     "Parameters": [
       {
         "Name": "task",
-        "Type": "FullStackSession6.Model.Tasks",
+        "Type": "TaskEight.DTOs.CreateTaskRequest",
         "IsRequired": true
       }
     ],
@@ -252,7 +252,7 @@
       },
       {
         "Name": "task",
-        "Type": "FullStackSession6.Model.Tasks",
+        "Type": "TaskEight.DTOs.UpdateTaskRequest",
         "IsRequired": true
       }
     ],
