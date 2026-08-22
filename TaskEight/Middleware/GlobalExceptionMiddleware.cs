@@ -20,6 +20,11 @@ namespace TaskFour.Middleware
             {
                 await _next(context);
             }
+            catch (ArgumentNullException ex)
+            {
+                _logger.LogError(ex, "ArgumentNullException occurred.");
+                await WriteProblemDetails(context, 400, "Invalid input.", ex.Message);
+            }
             catch (InvalidIdException ex)
             {
                 _logger.LogError(ex, "InvalidIdException occurred.");

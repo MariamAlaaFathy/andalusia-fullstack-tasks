@@ -1,12 +1,37 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskEight\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EA30A393-D581-D711-A290-1A61B6057147}|TaskEight.csproj|d:\\mariam\\files\\college files\\andalusia academy\\andalusia-fullstack-tasks\\taskeight\\controllers\\v2\\taskscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA30A393-D581-D711-A290-1A61B6057147}|TaskEight.csproj|solutionrelative:controllers\\v2\\taskscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TasksController.cs",
+              "DocumentMoniker": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskEight\\Controllers\\V2\\TasksController.cs",
+              "RelativeDocumentMoniker": "Controllers\\V2\\TasksController.cs",
+              "ToolTip": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskEight\\Controllers\\V2\\TasksController.cs",
+              "RelativeToolTip": "Controllers\\V2\\TasksController.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-22T02:59:09.541Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

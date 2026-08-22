@@ -2,7 +2,7 @@
 using FullStackSession6.Model;
 using FullStackSession6.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualBasic;
+using TaskEight.DTOs;
 using TaskEight.Model;
 
 namespace TaskFive.Controllers.v2
@@ -28,45 +28,30 @@ namespace TaskFive.Controllers.v2
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<IActionResult> GetTaskById(int id)
+        public async Task<ActionResult<TasksDTO>> GetTaskById(int id)
         {
-            var task = await _taskService.GetTaskById(id);
-            return Ok(new
-            {
-                task.Id,
-                task.Title,
-                task.IsCompleted,
-                task.TaskStatus,
-                task.DueDate,
-                task.CreatedAt,
-                task.UserId,
-                task.User?.Name,
-            });
+            return Ok(await _taskService.GetTaskById(id));
+        }
+
+        [HttpGet]
+        [Route("summary/{id}")]
+        public async Task<ActionResult<TaskSummaryDTO>> GetTaskSummaryById(int id)
+        {
+            return Ok(await _taskService.GetTaskSummaryById(id));
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateTask([FromBody] Tasks task)
+        public async Task<ActionResult<TasksDTO>> CreateTask([FromBody] Tasks task)
         {
-            await _taskService.CreateTask(task);
-            return CreatedAtAction(nameof(CreateTask), new { id = task.Id }, task);
+            
+            return CreatedAtAction(nameof(CreateTask), new { id = task.Id }, await _taskService.CreateTask(task));
         }
 
         [HttpPut]
         [Route("{id}")]
-        public async Task<IActionResult> UpdateTask(int id, [FromBody] Tasks task)
+        public async Task<ActionResult<TasksDTO>> UpdateTask(int id, [FromBody] Tasks task)
         {
-            await _taskService.UpdateTask(id, task);
-            return Ok(new
-            {
-                task.Id,
-                task.Title,
-                task.IsCompleted,
-                task.TaskStatus,
-                task.DueDate,
-                task.CreatedAt,
-                task.UserId,
-                task.User?.Name,
-            });
+            return Ok(await _taskService.UpdateTask(id, task));
         }
 
         [HttpDelete]
