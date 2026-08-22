@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 using TaskEight.Data;
 using TaskEight.Exceptions;
 using TaskEight.Model;
@@ -17,35 +18,35 @@ namespace TaskEight.Repositories
 
         public async Task<PagedResult<Users>> GetUsers(UserFilterParams paginationParams)
         {
-            IEnumerable<Users> users = await _dbcontext.Users.ToListAsync();
+            var query = _dbcontext.Users.AsQueryable();
+
+            var totalCount = await query.CountAsync();
 
             if (!string.IsNullOrEmpty(paginationParams.Search))
             {
-                users = users.Where(u => u.Name!.Contains(paginationParams.Search, StringComparison.OrdinalIgnoreCase)).ToList();
+                query = query.Where(u => EF.Functions.Like(u.Name, $"%{paginationParams.Search}%"));
             }
 
-            var allowedSort =
-            new Dictionary<string, Func<Users, object>>
+            var allowedSort = new Dictionary<string, Expression<Func<Users, object>>>
             {
                 ["id"] = u => u.Id,
                 ["name"] = u => u.Name!,
             };
 
-            if (allowedSort.TryGetValue(
-                    paginationParams.SortBy ?? "name", out var keySelector))
+            if (allowedSort.TryGetValue(paginationParams.SortBy ?? "name", out var keySelector))
             {
-                users = paginationParams.Order == "desc"
-                    ? users.OrderByDescending(keySelector)
-                    : users.OrderBy(keySelector);
+                query = paginationParams.Order == "desc"
+                    ? query.OrderByDescending(keySelector)
+                    : query.OrderBy(keySelector);
             }
 
-            IEnumerable<Users> filteredUsers = users.Skip((paginationParams.Page - 1) * paginationParams.PageSize).Take(paginationParams.PageSize).ToList();
+            IEnumerable<Users> filteredUsers = await query.Skip((paginationParams.Page - 1) * paginationParams.PageSize).Take(paginationParams.PageSize).ToListAsync();
             return new PagedResult<Users>
             {
                 Data = filteredUsers,
                 Page = paginationParams.Page,
                 PageSize = paginationParams.PageSize,
-                TotalCount = users.Count()
+                TotalCount = totalCount
             };
         }
 

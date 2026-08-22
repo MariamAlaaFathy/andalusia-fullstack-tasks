@@ -14,6 +14,7 @@ namespace FullStackSession6.Model
         [Required]
         public DateTime DueDate { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime? UpdatedAt { get; set; }
 
         // Foreign Key
         public int UserId { get; set; }

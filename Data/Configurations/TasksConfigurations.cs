@@ -14,6 +14,7 @@ namespace TaskEight.Data.Entities
             taskEntity.Property(t => t.TaskStatus).HasDefaultValue("Pending").HasMaxLength(50);
             taskEntity.Property(t => t.DueDate).IsRequired();
             taskEntity.Property(t => t.CreatedAt).HasDefaultValueSql("GETDATE()");
+            taskEntity.Property(t => t.UpdatedAt).IsRequired(false);
 
             taskEntity.HasOne(t => t.User).WithMany(u => u.Tasks).HasForeignKey(t => t.UserId).OnDelete(DeleteBehavior.Cascade);
         }

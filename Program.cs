@@ -5,6 +5,7 @@ using FullStackSession6.Services;
 using FullStackSession6.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using TaskEight.Data;
+using TaskEight.Mapping;
 using TaskEight.Repositories;
 using TaskEight.Repositories.Interfaces;
 using TaskEight.Services;
@@ -17,6 +18,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
+});
 
 builder.Services.AddScoped<IUsersService, UsersService>();
 builder.Services.AddScoped<IUsersRepository, UsersRepository>();
@@ -35,10 +41,7 @@ builder.Services.AddApiVersioning(options =>
     options.SubstituteApiVersionInUrl = true;
 });
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
-});
+builder.Services.AddAutoMapper(cfg => cfg.AddProfile<MappingProfile>());
 
 var app = builder.Build();
 
