@@ -26,12 +26,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -42,8 +38,7 @@
               "RelativeToolTip": "PremiumSavingsAccount.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAABKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-06T13:31:00.477Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-08-06T13:31:00.477Z"
             },
             {
               "$type": "Document",
@@ -55,8 +50,7 @@
               "RelativeToolTip": "SavingsAccount.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-06T13:22:51.783Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-08-06T13:22:51.783Z"
             },
             {
               "$type": "Document",
@@ -68,8 +62,7 @@
               "RelativeToolTip": "BankAccount.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAAAgwCUAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-06T13:10:39.369Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-08-06T13:10:39.369Z"
             },
             {
               "$type": "Document",

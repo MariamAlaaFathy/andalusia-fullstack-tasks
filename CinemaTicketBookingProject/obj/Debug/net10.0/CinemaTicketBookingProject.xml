@@ -1,0 +1,404 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CinemaTicketBookingProject</name>
+    </assembly>
+    <members>
+        <member name="T:CinemaTicketBookingProject.Controllers.AuditoriumsController">
+            <summary>
+            Manages cinema auditoriums and exposes the showtimes scheduled within them.
+            </summary>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.AuditoriumsController.GetAuditoriums(CinemaTicketBookingProject.Model.PaginationParams)">
+            <summary>
+            Gets a paginated list of auditoriums.
+            </summary>
+            <param name="paginationParams">Page and page size (pageSize capped at 100).</param>
+            <response code="200">The paginated list of auditoriums.</response>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.AuditoriumsController.GetAuditoriumById(System.Int32)">
+            <summary>
+            Gets a single auditorium by id.
+            </summary>
+            <param name="id">The auditorium id.</param>
+            <response code="200">The requested auditorium.</response>
+            <response code="404">No auditorium exists with the given id.</response>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.AuditoriumsController.CreateAuditorium(CinemaTicketBookingProject.DTOs.CreateAuditoriumRequest)">
+            <summary>
+            Creates a new auditorium.
+            </summary>
+            <param name="auditorium">The room number, capacity, and availability of the new auditorium.</param>
+            <response code="201">The auditorium was created. The response includes a Location header pointing to it.</response>
+            <response code="400">The request body failed validation.</response>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.AuditoriumsController.UpdateAuditorium(System.Int32,CinemaTicketBookingProject.DTOs.UpdateAuditoriumRequest)">
+            <summary>
+            Replaces an existing auditorium's details.
+            </summary>
+            <param name="id">The auditorium id.</param>
+            <param name="auditorium">The full replacement room number, capacity, and availability.</param>
+            <response code="200">The updated auditorium.</response>
+            <response code="400">The request body failed validation.</response>
+            <response code="404">No auditorium exists with the given id.</response>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.AuditoriumsController.DeleteAuditorium(System.Int32)">
+            <summary>
+            Deletes an auditorium.
+            </summary>
+            <param name="id">The auditorium id.</param>
+            <response code="204">The auditorium was deleted.</response>
+            <response code="404">No auditorium exists with the given id.</response>
+            <response code="409">The auditorium has scheduled showtimes and cannot be deleted.</response>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.AuditoriumsController.GetShowTimesForAuditorium(System.Int32,System.Nullable{System.DateTime})">
+            <summary>
+            Gets the showtimes scheduled in a specific auditorium, optionally filtered to a single date.
+            </summary>
+            <param name="id">The auditorium id.</param>
+            <param name="date">Optional date filter - only showtimes on this date are returned.</param>
+            <response code="200">The list of matching showtimes.</response>
+            <response code="404">No auditorium exists with the given id.</response>
+        </member>
+        <member name="T:CinemaTicketBookingProject.Controllers.BookingsController">
+            <summary>
+            Manages ticket bookings for guest customers.
+            </summary>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.BookingsController.GetBookings(CinemaTicketBookingProject.Model.BookingFilterParams)">
+            <summary>
+            Gets a paginated, filterable list of bookings.
+            </summary>
+            <param name="paginationParams">Filter by customerId, customerName, showTimeId, and/or status, plus page/pageSize.</param>
+            <response code="200">The paginated list of bookings.</response>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.BookingsController.GetBookingById(System.Int32)">
+            <summary>
+            Gets a single booking by id.
+            </summary>
+            <param name="id">The booking id.</param>
+            <response code="200">The requested booking.</response>
+            <response code="404">No booking exists with the given id.</response>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.BookingsController.GetBookingsByShowTime(System.Int32)">
+            <summary>
+            Gets all bookings for a specific showtime, including customer info.
+            </summary>
+            <param name="showTimeid">The showtime id.</param>
+            <response code="200">The list of bookings for the showtime.</response>
+            <response code="404">No showtime exists with the given id.</response>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.BookingsController.GetBookingsByCustomer(System.Int32)">
+            <summary>
+            Gets all bookings for a specific customer, including movie/showtime/auditorium details.
+            </summary>
+            <param name="customerId">The customer id.</param>
+            <response code="200">The list of bookings for the customer.</response>
+            <response code="404">No customer exists with the given id.</response>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.BookingsController.CreateBooking(CinemaTicketBookingProject.DTOs.CreateBookingRequest)">
+            <summary>
+            Creates a new booking for a guest customer. Booking status always starts as Pending.
+            </summary>
+            <param name="booking">The showtime to book and the guest's name/email.</param>
+            <response code="201">The booking was created. The response includes a Location header pointing to it.</response>
+            <response code="400">The request body failed validation, or the showtime has already passed.</response>
+            <response code="404">No showtime exists with the given id.</response>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.BookingsController.ConfirmBooking(System.Int32)">
+            <summary>
+            Confirms a pending booking.
+            </summary>
+            <param name="id">The booking id.</param>
+            <response code="200">The confirmed booking.</response>
+            <response code="400">The booking is already cancelled and cannot be confirmed.</response>
+            <response code="404">No booking exists with the given id.</response>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.BookingsController.CancelBooking(System.Int32)">
+            <summary>
+            Cancels a booking.
+            </summary>
+            <param name="id">The booking id.</param>
+            <response code="200">The cancelled booking.</response>
+            <response code="400">The booking is already cancelled.</response>
+            <response code="404">No booking exists with the given id.</response>
+        </member>
+        <member name="T:CinemaTicketBookingProject.Controllers.CustomerController">
+            <summary>
+            Manages guest customers.
+            </summary>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.CustomerController.GetCustomers(CinemaTicketBookingProject.Model.PaginationParams)">
+            <summary>
+            Gets a paginated list of customers.
+            </summary>
+            <param name="paginationParams">Page and page size (pageSize capped at 100).</param>
+            <response code="200">The paginated list of customers.</response>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.CustomerController.GetCustomerById(System.Int32)">
+            <summary>
+            Gets a single customer by id.
+            </summary>
+            <param name="id">The customer id.</param>
+            <response code="200">The requested customer.</response>
+            <response code="404">No customer exists with the given id.</response>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.CustomerController.GetCustomerByEmail(System.String)">
+            <summary>
+            Gets a single customer by email address.
+            </summary>
+            <param name="email">The customer's email address.</param>
+            <response code="200">The requested customer.</response>
+            <response code="404">No customer exists with the given email.</response>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.CustomerController.CreateCustomer(CinemaTicketBookingProject.DTOs.CreateCustomerRequest)">
+            <summary>
+            Creates a new customer.
+            </summary>
+            <param name="customer">The customer's name and email.</param>
+            <response code="201">The customer was created. The response includes a Location header pointing to it.</response>
+            <response code="400">The request body failed validation.</response>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.CustomerController.UpdateCustomer(System.Int32,CinemaTicketBookingProject.DTOs.UpdateCustomerRequest)">
+            <summary>
+            Replaces an existing customer's details.
+            </summary>
+            <param name="id">The customer id.</param>
+            <param name="customer">The full replacement name and email.</param>
+            <response code="200">The updated customer.</response>
+            <response code="400">The request body failed validation.</response>
+            <response code="404">No customer exists with the given id.</response>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.CustomerController.DeleteCustomer(System.Int32)">
+            <summary>
+            Deletes a customer.
+            </summary>
+            <param name="id">The customer id.</param>
+            <response code="204">The customer was deleted.</response>
+            <response code="404">No customer exists with the given id.</response>
+            <response code="409">The customer has existing bookings and cannot be deleted.</response>
+        </member>
+        <member name="T:CinemaTicketBookingProject.Controllers.ShowTimesController">
+            <summary>
+            Manages movie showtimes and their bookings.
+            </summary>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.ShowTimesController.GetShowTimes(CinemaTicketBookingProject.Model.PaginationParams)">
+            <summary>
+            Gets a paginated list of showtimes.
+            </summary>
+            <param name="paginationParams">Page and page size (pageSize capped at 100).</param>
+            <response code="200">The paginated list of showtimes.</response>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.ShowTimesController.GetShowTimeById(System.Int32)">
+            <summary>
+            Gets a single showtime by id.
+            </summary>
+            <param name="id">The showtime id.</param>
+            <response code="200">The requested showtime.</response>
+            <response code="404">No showtime exists with the given id.</response>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.ShowTimesController.GetShowTimesByAuditorium(System.Int32,System.Nullable{System.DateTime})">
+            <summary>
+            Gets showtimes for a specific auditorium, optionally filtered to a single date.
+            </summary>
+            <param name="auditoriumId">The auditorium id.</param>
+            <param name="date">Optional date filter - only showtimes on this date are returned.</param>
+            <response code="200">The list of matching showtimes.</response>
+            <response code="404">No auditorium exists with the given id.</response>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.ShowTimesController.CreateShowTime(CinemaTicketBookingProject.DTOs.CreateShowTimeRequest)">
+            <summary>
+            Schedules a new showtime for a movie in an auditorium.
+            </summary>
+            <param name="showTime">The movie, auditorium, and date/time to schedule.</param>
+            <response code="201">The showtime was created. The response includes a Location header pointing to its bookings endpoint.</response>
+            <response code="400">The request body failed validation, or the movie/auditorium is not currently available for scheduling.</response>
+            <response code="404">No movie or auditorium exists with the given id.</response>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.ShowTimesController.UpdateShowTime(System.Int32,CinemaTicketBookingProject.DTOs.UpdateShowTimeRequest)">
+            <summary>
+            Replaces an existing showtime's details.
+            </summary>
+            <param name="id">The showtime id.</param>
+            <param name="showTime">The full replacement movie, auditorium, and date/time.</param>
+            <response code="200">The updated showtime.</response>
+            <response code="400">The request body failed validation.</response>
+            <response code="404">No showtime, movie, or auditorium exists with the given id.</response>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.ShowTimesController.DeleteShowTime(System.Int32)">
+            <summary>
+            Deletes a showtime.
+            </summary>
+            <param name="id">The showtime id.</param>
+            <response code="204">The showtime was deleted.</response>
+            <response code="404">No showtime exists with the given id.</response>
+            <response code="409">The showtime has active bookings and cannot be deleted.</response>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.ShowTimesController.GetBookingsForShowTime(System.Int32)">
+            <summary>
+            Gets booking details, including customer info, for a specific showtime.
+            </summary>
+            <param name="id">The showtime id.</param>
+            <response code="200">The list of bookings for the showtime.</response>
+            <response code="404">No showtime exists with the given id.</response>
+        </member>
+        <member name="T:CinemaTicketBookingProject.Controllers.V1.MoviesV1Controller">
+            <summary>
+            Version 1 (deprecated) - compact movie representation: id, name, availableInCinema.
+            Read/delete only; use v2 for create/update.
+            </summary>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.V1.MoviesV1Controller.GetMovies(CinemaTicketBookingProject.Model.MovieFilterParams)">
+            <summary>
+            Gets a paginated, filterable, sortable list of movies (compact shape).
+            </summary>
+            <param name="paginationParams">Search, genre filter, sortBy (name/releaseDate), order (asc/desc), page, pageSize.</param>
+            <response code="200">The paginated list of movies.</response>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.V1.MoviesV1Controller.GetMovieById(System.Int32)">
+            <summary>
+            Gets a single movie by id (compact shape).
+            </summary>
+            <param name="id">The movie id.</param>
+            <response code="200">The requested movie.</response>
+            <response code="404">No movie exists with the given id.</response>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.V1.MoviesV1Controller.GetMovieByName(System.String)">
+            <summary>
+            Gets a single movie by exact name (compact shape).
+            </summary>
+            <param name="name">The movie's exact name.</param>
+            <response code="200">The requested movie.</response>
+            <response code="404">No movie exists with the given name.</response>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.V1.MoviesV1Controller.DeleteMovie(System.Int32)">
+            <summary>
+            Deletes a movie.
+            </summary>
+            <param name="id">The movie id.</param>
+            <response code="204">The movie was deleted.</response>
+            <response code="404">No movie exists with the given id.</response>
+            <response code="409">The movie has scheduled showtimes and cannot be deleted.</response>
+        </member>
+        <member name="T:CinemaTicketBookingProject.Controllers.V2.MoviesV2Controller">
+            <summary>
+            Version 2 (current) - detailed movie representation: id, name, genre, releaseDate, availableInCinema.
+            Full CRUD.
+            </summary>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.V2.MoviesV2Controller.GetMovies(CinemaTicketBookingProject.Model.MovieFilterParams)">
+            <summary>
+            Gets a paginated, filterable, sortable list of movies (detailed shape).
+            </summary>
+            <param name="filterParams">Search, genre filter, sortBy (name/releaseDate), order (asc/desc), page, pageSize.</param>
+            <response code="200">The paginated list of movies.</response>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.V2.MoviesV2Controller.GetMovieById(System.Int32)">
+            <summary>
+            Gets a single movie by id (detailed shape).
+            </summary>
+            <param name="id">The movie id.</param>
+            <response code="200">The requested movie.</response>
+            <response code="404">No movie exists with the given id.</response>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.V2.MoviesV2Controller.GetMovieByName(System.String)">
+            <summary>
+            Gets a single movie by exact name (detailed shape).
+            </summary>
+            <param name="name">The movie's exact name.</param>
+            <response code="200">The requested movie.</response>
+            <response code="404">No movie exists with the given name.</response>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.V2.MoviesV2Controller.CreateMovie(CinemaTicketBookingProject.DTOs.CreateMovieRequest)">
+            <summary>
+            Creates a new movie. Duplicate titles are rejected.
+            </summary>
+            <param name="movie">The name, genre, release date, and cinema availability.</param>
+            <response code="201">The movie was created. The response includes a Location header pointing to it.</response>
+            <response code="400">The request body failed validation.</response>
+            <response code="409">A movie with the same name already exists.</response>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.V2.MoviesV2Controller.UpdateMovie(System.Int32,CinemaTicketBookingProject.DTOs.UpdateMovieRequest)">
+            <summary>
+            Replaces an existing movie's details.
+            </summary>
+            <param name="id">The movie id.</param>
+            <param name="movie">The full replacement name, genre, release date, and cinema availability.</param>
+            <response code="200">The updated movie.</response>
+            <response code="400">The request body failed validation.</response>
+            <response code="404">No movie exists with the given id.</response>
+            <response code="409">Another movie already has the given name.</response>
+        </member>
+        <member name="M:CinemaTicketBookingProject.Controllers.V2.MoviesV2Controller.DeleteMovie(System.Int32)">
+            <summary>
+            Deletes a movie.
+            </summary>
+            <param name="id">The movie id.</param>
+            <response code="204">The movie was deleted.</response>
+            <response code="404">No movie exists with the given id.</response>
+            <response code="409">The movie has scheduled showtimes and cannot be deleted.</response>
+        </member>
+        <member name="T:CinemaTicketBookingProject.Migrations.InitialCreate">
+            <inheritdoc />
+        </member>
+        <member name="M:CinemaTicketBookingProject.Migrations.InitialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CinemaTicketBookingProject.Migrations.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CinemaTicketBookingProject.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Program">
+            <summary>
+            Auto-generated public partial Program class for top-level statement apps.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Type)">
+            <summary>
+            Generates a documentation comment ID for a type.
+            Example: T:Namespace.Outer+Inner`1 becomes T:Namespace.Outer.Inner`1
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Reflection.PropertyInfo)">
+            <summary>
+            Generates a documentation comment ID for a property.
+            Example: P:Namespace.ContainingType.PropertyName or for an indexer P:Namespace.ContainingType.Item(System.Int32)
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Type,System.String)">
+            <summary>
+            Generates a documentation comment ID for a property given its container type and property name.
+            Example: P:Namespace.ContainingType.PropertyName
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Reflection.MethodInfo)">
+            <summary>
+            Generates a documentation comment ID for a method (or constructor).
+            For example:
+              M:Namespace.ContainingType.MethodName(ParamType1,ParamType2)~ReturnType
+              M:Namespace.ContainingType.#ctor(ParamType)
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.GetTypeDocId(System.Type,System.Boolean,System.Boolean)">
+            <summary>
+            Generates a documentation ID string for a type.
+            This method handles nested types (replacing '+' with '.'),
+            generic types, arrays, pointers, by-ref types, and generic parameters.
+            The <paramref name="includeGenericArguments"/> flag controls whether
+            constructed generic type arguments are emitted, while <paramref name="omitGenericArity"/>
+            controls whether the generic arity marker (e.g. "`1") is appended.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.NormalizeDocId(System.String)">
+            <summary>
+            Normalizes a documentation comment ID to match the compiler-style format.
+            Strips the return type suffix for ordinary methods but retains it for conversion operators.
+            </summary>
+            <param name="docId">The documentation comment ID to normalize.</param>
+            <returns>The normalized documentation comment ID.</returns>
+        </member>
+    </members>
+</doc>
