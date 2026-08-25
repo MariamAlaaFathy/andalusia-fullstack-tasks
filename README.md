@@ -54,10 +54,8 @@ CinemaTicketBookingProject/
 │   └── GlobalExceptionMiddleware.cs
 ├── Data/
 │   └── AppDbContext.cs
-├── Mapping/
-│   └── MappingProfile.cs
-└── Swagger/
-    └── ConfigureSwaggerOptions.cs
+└── Mapping/
+    └── MappingProfile.cs
 ```
 
 ## Entity relationships
