@@ -1,0 +1,189 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TaskTen</name>
+    </assembly>
+    <members>
+        <member name="T:TaskTen.Controllers.UserController">
+            <summary>
+            Manages users that tasks can be assigned to.
+            </summary>
+        </member>
+        <member name="M:TaskTen.Controllers.UserController.GetUsers(TaskTen.Model.UserFilterParams)">
+            <summary>
+            Gets a paginated, filterable list of users.
+            </summary>
+            <param name="paginationParams">Page, page size, and any available filters.</param>
+            <response code="200">The paginated list of users.</response>
+            <response code="401">You are not authorized to do this action.</response>
+        </member>
+        <member name="M:TaskTen.Controllers.UserController.GetUserById(System.Int32)">
+            <summary>
+            Gets a single user by id.
+            </summary>
+            <param name="id">The user id.</param>
+            <response code="200">The requested user.</response>
+            <response code="401">You are not authorized to do this action.</response>
+            <response code="404">No user exists with the given id.</response>
+        </member>
+        <member name="M:TaskTen.Controllers.UserController.RegisterUser(TaskTen.DTOs.RegisterUserRequestDTO)">
+            <summary>
+            Registers a new user.
+            </summary>
+            <param name="user">The new user's name, email, password, and role.</param>
+            <response code="200">The user was registered.</response>
+            <response code="409">A user with the same email already exists.</response>
+        </member>
+        <member name="M:TaskTen.Controllers.UserController.LoginUser(TaskTen.DTOs.LoginUserRequestDTO)">
+            <summary>
+            Logs in a new user.
+            </summary>
+            <param name="user">The new user's name, email, password, and role.</param>
+            <response code="200">The user was logged in.</response>
+            <response code="401">Invalid Credentials</response>
+        </member>
+        <member name="M:TaskTen.Controllers.UserController.UpdateUser(System.Int32,TaskTen.DTOs.UpdateUserRequestDTO)">
+            <summary>
+            Replaces an existing user's details.
+            </summary>
+            <param name="id">The user id.</param>
+            <param name="user">The full replacement user's name, email, password, and role.</param>
+            <response code="200">The updated user.</response>
+            <response code="401">You are not authorized to do this action.</response>
+            <response code="404">No user exists with the given id.</response>
+        </member>
+        <member name="M:TaskTen.Controllers.UserController.DeleteUser(System.Int32)">
+            <summary>
+            Deletes a user.
+            </summary>
+            <param name="id">The user id.</param>
+            <response code="204">The user was deleted.</response>
+            <response code="401">You are not authorized to do this action.</response>
+            <response code="404">No user exists with the given id.</response>
+        </member>
+        <member name="T:TaskTen.Migrations.InitialCreate">
+            <inheritdoc />
+        </member>
+        <member name="M:TaskTen.Migrations.InitialCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TaskTen.Migrations.InitialCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TaskTen.Migrations.InitialCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:TaskFive.Controllers.v2.TasksController">
+            <summary>
+            Version 2 - manages tasks, including pagination/filtering/sorting and a lightweight summary view.
+            </summary>
+        </member>
+        <member name="M:TaskFive.Controllers.v2.TasksController.GetTasks(TaskTen.Model.TaskFilterParams)">
+            <summary>
+            Gets a paginated, filterable, sortable list of tasks.
+            </summary>
+            <param name="paginationParams">Search, status/completion filters, date range, sortBy, order, page, pageSize.</param>
+            <response code="200">The paginated list of tasks.</response>
+            <response code="401">You are not authorized to do this action.</response>
+        </member>
+        <member name="M:TaskFive.Controllers.v2.TasksController.GetTaskById(System.Int32)">
+            <summary>
+            Gets a single task by id, in full detail.
+            </summary>
+            <param name="id">The task id.</param>
+            <response code="200">The requested task.</response>
+            <response code="401">You are not authorized to do this action.</response>
+            <response code="404">No task exists with the given id.</response>
+        </member>
+        <member name="M:TaskFive.Controllers.v2.TasksController.GetTaskSummaryById(System.Int32)">
+            <summary>
+            Gets a lightweight summary (id, title, isCompleted) for a single task.
+            </summary>
+            <param name="id">The task id.</param>
+            <response code="200">The requested task summary.</response>
+            <response code="401">You are not authorized to do this action.</response>
+            <response code="404">No task exists with the given id.</response>
+        </member>
+        <member name="M:TaskFive.Controllers.v2.TasksController.CreateTask(TaskTen.DTOs.CreateTaskRequest)">
+            <summary>
+            Creates a new task. Duplicate titles and past due dates are rejected.
+            </summary>
+            <param name="task">The title, due date, isCompleted, status, and owning user id.</param>
+            <response code="201">The task was created. The response includes a Location header pointing to it.</response>
+            <response code="400">The request body failed validation, or the due date is in the past.</response>
+            <response code="401">You are not authorized to do this action.</response>
+            <response code="404">The referenced user does not exist.</response>
+            <response code="409">A task with the same title already exists.</response>
+        </member>
+        <member name="M:TaskFive.Controllers.v2.TasksController.UpdateTask(System.Int32,TaskTen.DTOs.UpdateTaskRequest)">
+            <summary>
+            Replaces an existing task's details.
+            </summary>
+            <param name="id">The task id.</param>
+            <param name="task">The full replacement title, due date, isCompleted, status</param>
+            <response code="200">The updated task.</response>
+            <response code="400">The request body failed validation, or the due date is in the past.</response>
+            <response code="401">You are not authorized to do this action.</response>
+            <response code="404">No task exists with the given id.</response>
+            <response code="409">Another task already has the given title.</response>
+        </member>
+        <member name="M:TaskFive.Controllers.v2.TasksController.DeleteTask(System.Int32)">
+            <summary>
+            Deletes a task.
+            </summary>
+            <param name="id">The task id.</param>
+            <response code="204">The task was deleted.</response>
+            <response code="401">You are not authorized to do this action.</response>
+            <response code="404">No task exists with the given id.</response>
+        </member>
+        <member name="T:Program">
+            <summary>
+            Auto-generated public partial Program class for top-level statement apps.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Type)">
+            <summary>
+            Generates a documentation comment ID for a type.
+            Example: T:Namespace.Outer+Inner`1 becomes T:Namespace.Outer.Inner`1
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Reflection.PropertyInfo)">
+            <summary>
+            Generates a documentation comment ID for a property.
+            Example: P:Namespace.ContainingType.PropertyName or for an indexer P:Namespace.ContainingType.Item(System.Int32)
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Type,System.String)">
+            <summary>
+            Generates a documentation comment ID for a property given its container type and property name.
+            Example: P:Namespace.ContainingType.PropertyName
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.CreateDocumentationId(System.Reflection.MethodInfo)">
+            <summary>
+            Generates a documentation comment ID for a method (or constructor).
+            For example:
+              M:Namespace.ContainingType.MethodName(ParamType1,ParamType2)~ReturnType
+              M:Namespace.ContainingType.#ctor(ParamType)
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.GetTypeDocId(System.Type,System.Boolean,System.Boolean)">
+            <summary>
+            Generates a documentation ID string for a type.
+            This method handles nested types (replacing '+' with '.'),
+            generic types, arrays, pointers, by-ref types, and generic parameters.
+            The <paramref name="includeGenericArguments"/> flag controls whether
+            constructed generic type arguments are emitted, while <paramref name="omitGenericArity"/>
+            controls whether the generic arity marker (e.g. "`1") is appended.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.OpenApi.Generated.DocumentationCommentIdHelper.NormalizeDocId(System.String)">
+            <summary>
+            Normalizes a documentation comment ID to match the compiler-style format.
+            Strips the return type suffix for ordinary methods but retains it for conversion operators.
+            </summary>
+            <param name="docId">The documentation comment ID to normalize.</param>
+            <returns>The normalized documentation comment ID.</returns>
+        </member>
+    </members>
+</doc>
