@@ -159,6 +159,16 @@
               }
             }
           },
+          "403": {
+            "description": "You are forbidden to do this action.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
           "404": {
             "description": "The referenced user does not exist.",
             "content": {
@@ -213,6 +223,16 @@
           },
           "401": {
             "description": "You are not authorized to do this action.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "You are forbidden to do this action.",
             "content": {
               "application/json": {
                 "schema": {
@@ -301,6 +321,16 @@
               }
             }
           },
+          "403": {
+            "description": "You are forbidden to do this action.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
           "404": {
             "description": "No task exists with the given id.",
             "content": {
@@ -354,6 +384,16 @@
               }
             }
           },
+          "403": {
+            "description": "You are forbidden to do this action.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
           "404": {
             "description": "No task exists with the given id.",
             "content": {
@@ -398,6 +438,16 @@
           },
           "401": {
             "description": "You are not authorized to do this action.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "You are forbidden to do this action.",
             "content": {
               "application/json": {
                 "schema": {
@@ -484,6 +534,16 @@
           },
           "401": {
             "description": "You are not authorized to do this action.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "You are forbidden to do this action.",
             "content": {
               "application/json": {
                 "schema": {
@@ -601,6 +661,16 @@
               }
             }
           },
+          "403": {
+            "description": "You are forbidden to do this action.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
           "404": {
             "description": "No user exists with the given id.",
             "content": {
@@ -678,6 +748,16 @@
               }
             }
           },
+          "403": {
+            "description": "You are forbidden to do this action.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
           "404": {
             "description": "No user exists with the given id.",
             "content": {
@@ -720,6 +800,16 @@
           },
           "401": {
             "description": "You are not authorized to do this action.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "You are forbidden to do this action.",
             "content": {
               "application/json": {
                 "schema": {

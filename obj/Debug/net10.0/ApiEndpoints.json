@@ -52,6 +52,13 @@
           "application/json"
         ],
         "StatusCode": 401
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 403
       }
     ]
   },
@@ -130,6 +137,13 @@
         "MediaTypes": [
           "application/json"
         ],
+        "StatusCode": 403
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 404
       }
     ]
@@ -178,6 +192,13 @@
         "MediaTypes": [
           "application/json"
         ],
+        "StatusCode": 403
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 404
       }
     ]
@@ -213,6 +234,13 @@
           "application/json"
         ],
         "StatusCode": 401
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 403
       },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
@@ -371,6 +399,13 @@
         "MediaTypes": [
           "application/json"
         ],
+        "StatusCode": 403
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 404
       },
       {
@@ -410,6 +445,13 @@
           "application/json"
         ],
         "StatusCode": 401
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 403
       },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
@@ -466,6 +508,13 @@
         "MediaTypes": [
           "application/json"
         ],
+        "StatusCode": 403
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 404
       },
       {
@@ -509,6 +558,13 @@
         "MediaTypes": [
           "application/json"
         ],
+        "StatusCode": 403
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "application/json"
+        ],
         "StatusCode": 404
       }
     ]
@@ -541,6 +597,13 @@
           "application/json"
         ],
         "StatusCode": 401
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 403
       },
       {
         "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",

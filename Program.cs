@@ -6,14 +6,15 @@ using FullStackSession6.Repositories.Interfaces;
 using FullStackSession6.Services;
 using FullStackSession6.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
 using System.Reflection;
 using System.Text;
 using TaskFive.Middleware;
 using TaskFour.Middleware;
+using TaskTen.Authorization;
 using TaskTen.Data;
 using TaskTen.Mapping;
 using TaskTen.Repositories;
@@ -38,6 +39,8 @@ builder.Services.AddScoped<IUsersRepository, UsersRepository>();
 
 builder.Services.AddScoped<ITasksService, TasksService>();
 builder.Services.AddScoped<ITasksRepository, TasksRepository>();
+
+builder.Services.AddScoped<IAuthorizationHandler, TaskAuthorizationHandler>();
 
 builder.Services.AddApiVersioning(options =>
 {
@@ -97,6 +100,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     builder.Configuration["Jwt:Secret"]!))
         };
     });
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("CanManageTasks", policy =>
+        policy.RequireAuthenticatedUser()
+              .RequireRole("Admin"));
+});
 
 var app = builder.Build();
 
