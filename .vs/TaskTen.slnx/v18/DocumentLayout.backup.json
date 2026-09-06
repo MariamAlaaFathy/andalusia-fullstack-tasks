@@ -3,20 +3,12 @@
   "WorkspaceRootPath": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskTen\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7A1B5870-24FE-8B43-DB54-C7FB79EB4373}|TaskTen.csproj|d:\\mariam\\files\\college files\\andalusia academy\\andalusia-fullstack-tasks\\taskten\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7A1B5870-24FE-8B43-DB54-C7FB79EB4373}|TaskTen.csproj|solutionrelative:controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7A1B5870-24FE-8B43-DB54-C7FB79EB4373}|TaskTen.csproj|d:\\mariam\\files\\college files\\andalusia academy\\andalusia-fullstack-tasks\\taskten\\authorization\\taskauthorizationhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7A1B5870-24FE-8B43-DB54-C7FB79EB4373}|TaskTen.csproj|solutionrelative:authorization\\taskauthorizationhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7A1B5870-24FE-8B43-DB54-C7FB79EB4373}|TaskTen.csproj|d:\\mariam\\files\\college files\\andalusia academy\\andalusia-fullstack-tasks\\taskten\\repositories\\usersrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7A1B5870-24FE-8B43-DB54-C7FB79EB4373}|TaskTen.csproj|solutionrelative:repositories\\usersrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7A1B5870-24FE-8B43-DB54-C7FB79EB4373}|TaskTen.csproj|d:\\mariam\\files\\college files\\andalusia academy\\andalusia-fullstack-tasks\\taskten\\services\\usersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7A1B5870-24FE-8B43-DB54-C7FB79EB4373}|TaskTen.csproj|solutionrelative:services\\usersservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7A1B5870-24FE-8B43-DB54-C7FB79EB4373}|TaskTen.csproj|d:\\mariam\\files\\college files\\andalusia academy\\andalusia-fullstack-tasks\\taskten\\mapping\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7A1B5870-24FE-8B43-DB54-C7FB79EB4373}|TaskTen.csproj|solutionrelative:mapping\\mappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7A1B5870-24FE-8B43-DB54-C7FB79EB4373}|TaskTen.csproj|d:\\mariam\\files\\college files\\andalusia academy\\andalusia-fullstack-tasks\\taskten\\controllers\\v2\\taskscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7A1B5870-24FE-8B43-DB54-C7FB79EB4373}|TaskTen.csproj|solutionrelative:controllers\\v2\\taskscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,58 +18,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UsersService.cs",
-              "DocumentMoniker": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskTen\\Services\\UsersService.cs",
-              "RelativeDocumentMoniker": "Services\\UsersService.cs",
-              "ToolTip": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskTen\\Services\\UsersService.cs",
-              "RelativeToolTip": "Services\\UsersService.cs",
-              "ViewState": "AgIAAC4AAAAAAAAAAAA/wEUAAABJAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "TaskAuthorizationHandler.cs",
+              "DocumentMoniker": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskTen\\Authorization\\TaskAuthorizationHandler.cs",
+              "RelativeDocumentMoniker": "Authorization\\TaskAuthorizationHandler.cs",
+              "ToolTip": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskTen\\Authorization\\TaskAuthorizationHandler.cs",
+              "RelativeToolTip": "Authorization\\TaskAuthorizationHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-01T01:46:26.527Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "MappingProfile.cs",
-              "DocumentMoniker": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskTen\\Mapping\\MappingProfile.cs",
-              "RelativeDocumentMoniker": "Mapping\\MappingProfile.cs",
-              "ToolTip": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskTen\\Mapping\\MappingProfile.cs",
-              "RelativeToolTip": "Mapping\\MappingProfile.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAxwBcAAABNAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-01T01:45:28.865Z",
+              "WhenOpened": "2026-09-06T16:10:09.342Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "UsersRepository.cs",
-              "DocumentMoniker": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskTen\\Repositories\\UsersRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\UsersRepository.cs",
-              "ToolTip": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskTen\\Repositories\\UsersRepository.cs",
-              "RelativeToolTip": "Repositories\\UsersRepository.cs",
-              "ViewState": "AgIAAFQAAAAAAAAAAIAwwG0AAABVAAAAAAAAAA==",
+              "Title": "TasksController.cs",
+              "DocumentMoniker": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskTen\\Controllers\\V2\\TasksController.cs",
+              "RelativeDocumentMoniker": "Controllers\\V2\\TasksController.cs",
+              "ToolTip": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskTen\\Controllers\\V2\\TasksController.cs",
+              "RelativeToolTip": "Controllers\\V2\\TasksController.cs",
+              "ViewState": "AgIAAFMAAAAAAAAAAAA9wDsAAABWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-01T01:38:58.646Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskTen\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "Controllers\\UserController.cs",
-              "ToolTip": "D:\\Mariam\\Files\\College Files\\Andalusia Academy\\andalusia-fullstack-tasks\\TaskTen\\Controllers\\UserController.cs",
-              "RelativeToolTip": "Controllers\\UserController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHkAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-01T01:20:05.41Z",
+              "WhenOpened": "2026-09-06T13:48:21.326Z",
               "EditorCaption": ""
             }
           ]

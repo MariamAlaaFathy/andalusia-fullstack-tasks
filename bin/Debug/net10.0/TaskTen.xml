@@ -16,6 +16,7 @@
             <param name="paginationParams">Page, page size, and any available filters.</param>
             <response code="200">The paginated list of users.</response>
             <response code="401">You are not authorized to do this action.</response>
+            <response code="403">You are forbidden to do this action.</response>
         </member>
         <member name="M:TaskTen.Controllers.UserController.GetUserById(System.Int32)">
             <summary>
@@ -24,6 +25,7 @@
             <param name="id">The user id.</param>
             <response code="200">The requested user.</response>
             <response code="401">You are not authorized to do this action.</response>
+            <response code="403">You are forbidden to do this action.</response>
             <response code="404">No user exists with the given id.</response>
         </member>
         <member name="M:TaskTen.Controllers.UserController.RegisterUser(TaskTen.DTOs.RegisterUserRequestDTO)">
@@ -50,6 +52,7 @@
             <param name="user">The full replacement user's name, email, password, and role.</param>
             <response code="200">The updated user.</response>
             <response code="401">You are not authorized to do this action.</response>
+            <response code="403">You are forbidden to do this action.</response>
             <response code="404">No user exists with the given id.</response>
         </member>
         <member name="M:TaskTen.Controllers.UserController.DeleteUser(System.Int32)">
@@ -59,6 +62,7 @@
             <param name="id">The user id.</param>
             <response code="204">The user was deleted.</response>
             <response code="401">You are not authorized to do this action.</response>
+            <response code="403">You are forbidden to do this action.</response>
             <response code="404">No user exists with the given id.</response>
         </member>
         <member name="T:TaskTen.Migrations.InitialCreate">
@@ -93,6 +97,7 @@
             <param name="id">The task id.</param>
             <response code="200">The requested task.</response>
             <response code="401">You are not authorized to do this action.</response>
+            <response code="403">You are forbidden to do this action.</response>
             <response code="404">No task exists with the given id.</response>
         </member>
         <member name="M:TaskFive.Controllers.v2.TasksController.GetTaskSummaryById(System.Int32)">
@@ -102,6 +107,7 @@
             <param name="id">The task id.</param>
             <response code="200">The requested task summary.</response>
             <response code="401">You are not authorized to do this action.</response>
+            <response code="403">You are forbidden to do this action.</response>
             <response code="404">No task exists with the given id.</response>
         </member>
         <member name="M:TaskFive.Controllers.v2.TasksController.CreateTask(TaskTen.DTOs.CreateTaskRequest)">
@@ -112,6 +118,7 @@
             <response code="201">The task was created. The response includes a Location header pointing to it.</response>
             <response code="400">The request body failed validation, or the due date is in the past.</response>
             <response code="401">You are not authorized to do this action.</response>
+            <response code="403">You are forbidden to do this action.</response>
             <response code="404">The referenced user does not exist.</response>
             <response code="409">A task with the same title already exists.</response>
         </member>
@@ -124,6 +131,7 @@
             <response code="200">The updated task.</response>
             <response code="400">The request body failed validation, or the due date is in the past.</response>
             <response code="401">You are not authorized to do this action.</response>
+            <response code="403">You are forbidden to do this action.</response>
             <response code="404">No task exists with the given id.</response>
             <response code="409">Another task already has the given title.</response>
         </member>
@@ -134,6 +142,7 @@
             <param name="id">The task id.</param>
             <response code="204">The task was deleted.</response>
             <response code="401">You are not authorized to do this action.</response>
+            <response code="403">You are forbidden to do this action.</response>
             <response code="404">No task exists with the given id.</response>
         </member>
         <member name="T:Program">

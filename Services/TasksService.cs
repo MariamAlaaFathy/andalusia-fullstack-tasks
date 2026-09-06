@@ -30,16 +30,16 @@ namespace FullStackSession6.Services
             };
         }
 
-        public async Task<TasksDTO> GetTaskById(int id, int userId)
+        public async Task<TasksDTO> GetTaskById(int id)
         {
-            var task = await _taskRepository.GetTaskById(id, userId);
+            var task = await _taskRepository.GetTaskById(id);
             var taskDTO = _mapper.Map<TasksDTO>(task);
             return taskDTO;
         }
 
-        public async Task<TaskSummaryDTO> GetTaskSummaryById(int id, int userId)
+        public async Task<TaskSummaryDTO> GetTaskSummaryById(int id)
         {
-            var task = await _taskRepository.GetTaskById(id, userId);
+            var task = await _taskRepository.GetTaskById(id);
             var taskSummaryDTO = _mapper.Map<TaskSummaryDTO>(task);
             return taskSummaryDTO;
         }
@@ -74,25 +74,25 @@ namespace FullStackSession6.Services
             return taskDTO;
         }
 
-        public async Task<TasksDTO> UpdateTask(int id, UpdateTaskRequest task, int userId)
+        public async Task<TasksDTO> UpdateTask(int id, UpdateTaskRequest task)
         {
             if (task == null)
             {
                 throw new ArgumentNullException(nameof(task));
             }
             var mappedTask = _mapper.Map<Tasks>(task);
-            var existingTask = await _taskRepository.UpdateTask(id, mappedTask, userId);
+            var existingTask = await _taskRepository.UpdateTask(id, mappedTask);
             var taskDTO = _mapper.Map<TasksDTO>(existingTask);
             return taskDTO;
         }
 
-        public async Task DeleteTask(int id, int userId)
+        public async Task DeleteTask(int id)
         {
-            if (await _taskRepository.GetTaskById(id, userId) == null)
+            if (await _taskRepository.GetTaskById(id) == null)
             {
                 throw new NotFoundException("The requested task could not be found.");
             }
-            await _taskRepository.DeleteTask(id, userId);
+            await _taskRepository.DeleteTask(id);
         }
     }
 }
