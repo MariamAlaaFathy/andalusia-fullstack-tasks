@@ -79,13 +79,13 @@ namespace FullStackSession6.Repositories
             };
         }
 
-        public async Task<Tasks> GetTaskById(int id, int userId)
+        public async Task<Tasks> GetTaskById(int id)
         {
-            if (await _dbcontext.Tasks.FirstOrDefaultAsync(t => t.Id == id && t.UserId == userId) == null)
+            if (await _dbcontext.Tasks.FirstOrDefaultAsync(t => t.Id == id) == null)
             {
                 throw new NotFoundException("The requested task could not be found.");
             }
-            return await _dbcontext.Tasks.Include(t => t.User).Where(t => t.Id == id && t.UserId == userId).SingleAsync();
+            return await _dbcontext.Tasks.Include(t => t.User).Where(t => t.Id == id).SingleAsync();
         }
 
         public async Task<Tasks> GetTaskByTitle(string title, int userId)
@@ -105,14 +105,14 @@ namespace FullStackSession6.Repositories
 
         }
 
-        public async Task<Tasks> UpdateTask(int id, Tasks task, int userId)
+        public async Task<Tasks> UpdateTask(int id, Tasks task)
         {
             var existingTask = await _dbcontext.Tasks.FindAsync(id);
             if (existingTask == null)
             {
                 throw new NotFoundException("The requested task could not be found.");
             }
-            else if (await GetTaskByTitle(task.Title!, userId) != null && (await GetTaskByTitle(task.Title!, userId)).Id != id)
+            else if (await _dbcontext.Tasks.FirstOrDefaultAsync(t => t.Title == task.Title) != null && (await _dbcontext.Tasks.FirstOrDefaultAsync(t => t.Title == task.Title)).Id != id)
             {
                 throw new ConflictException("A task with the same title already exists.");
             }
@@ -128,12 +128,12 @@ namespace FullStackSession6.Repositories
             existingTask.UpdatedAt = DateTime.Now;
 
             await _dbcontext.SaveChangesAsync();
-            return await _dbcontext.Tasks.Include(t => t.User).Where(t => t.Id == id && t.UserId == userId).SingleAsync();
+            return await _dbcontext.Tasks.Include(t => t.User).Where(t => t.Id == id).SingleAsync();
         }
 
-        public async Task DeleteTask(int id, int userId)
+        public async Task DeleteTask(int id)
         {
-            _dbcontext.Tasks.Remove(await _dbcontext.Tasks.FirstOrDefaultAsync(t => t.Id == id && t.UserId == userId));
+            _dbcontext.Tasks.Remove(await _dbcontext.Tasks.FirstOrDefaultAsync(t => t.Id == id));
             await _dbcontext.SaveChangesAsync();
         }
     }

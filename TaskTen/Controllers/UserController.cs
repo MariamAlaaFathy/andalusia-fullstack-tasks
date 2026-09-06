@@ -11,6 +11,7 @@ namespace TaskTen.Controllers
     /// <summary>
     /// Manages users that tasks can be assigned to.
     /// </summary>
+    [Authorize]
     [ApiController]
     [Route("api/users")]
     [Produces("application/json")]
@@ -30,17 +31,14 @@ namespace TaskTen.Controllers
         /// <param name="paginationParams">Page, page size, and any available filters.</param>
         /// <response code="200">The paginated list of users.</response>
         /// <response code="401">You are not authorized to do this action.</response>
-        [Authorize]
+        /// <response code="403">You are forbidden to do this action.</response>
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         [ProducesResponseType(typeof(PagedResult<Users>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         public async Task<ActionResult<List<UserDTO>>> GetUsers([FromQuery] UserFilterParams paginationParams)
         {
-            string _currentUserRole = User.FindFirst(ClaimTypes.Role)!.Value;
-            if (_currentUserRole != "Admin")
-            {
-                return Unauthorized(new { title = "You are not authorized to do this action." });
-            }
             return Ok(await _userService.GetUsers(paginationParams));
         }
 
@@ -50,12 +48,13 @@ namespace TaskTen.Controllers
         /// <param name="id">The user id.</param>
         /// <response code="200">The requested user.</response>
         /// <response code="401">You are not authorized to do this action.</response>
+        /// <response code="403">You are forbidden to do this action.</response>
         /// <response code="404">No user exists with the given id.</response>
-        [Authorize]
         [HttpGet]
         [Route("{id}")]
         [ProducesResponseType(typeof(Users), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         public async Task<ActionResult<UserDTO>> GetUserById(int id)
         {
@@ -63,7 +62,7 @@ namespace TaskTen.Controllers
             string _currentUserRole = User.FindFirst(ClaimTypes.Role)!.Value;
             if (_currentUserId != id && _currentUserRole != "Admin")
             {
-                return Unauthorized(new { message = "You are not authorized to do this action." });
+                return Forbid("You are forbidden to do this action.");
             }
             return Ok(await _userService.GetUserById(id));
         }
@@ -74,6 +73,7 @@ namespace TaskTen.Controllers
         /// <param name="user">The new user's name, email, password, and role.</param>
         /// <response code="200">The user was registered.</response>
         /// <response code="409">A user with the same email already exists.</response>
+        [AllowAnonymous]
         [HttpPost]
         [ProducesResponseType(typeof(Users), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
@@ -89,6 +89,7 @@ namespace TaskTen.Controllers
         /// <param name="user">The new user's name, email, password, and role.</param>
         /// <response code="200">The user was logged in.</response>
         /// <response code="401">Invalid Credentials</response>
+        [AllowAnonymous]
         [HttpPost]
         [Route("login")]
         [ProducesResponseType(typeof(Users), StatusCodes.Status201Created)]
@@ -112,12 +113,13 @@ namespace TaskTen.Controllers
         /// <param name="user">The full replacement user's name, email, password, and role.</param>
         /// <response code="200">The updated user.</response>
         /// <response code="401">You are not authorized to do this action.</response>
+        /// <response code="403">You are forbidden to do this action.</response>
         /// <response code="404">No user exists with the given id.</response>
-        [Authorize]
         [HttpPut]
         [Route("{id}")]
         [ProducesResponseType(typeof(Users), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         public async Task<ActionResult<UserDTO>> UpdateUser(int id, [FromBody] UpdateUserRequestDTO user)
         {
@@ -125,7 +127,7 @@ namespace TaskTen.Controllers
             string _currentUserRole = User.FindFirst(ClaimTypes.Role)!.Value;
             if (_currentUserId != id && _currentUserRole != "Admin")
             {
-                return Unauthorized(new { message = "You are not authorized to do this action." });
+                return Forbid("You are forbidden to do this action.");
             }
             if (_currentUserRole != "Admin")
             {
@@ -141,12 +143,13 @@ namespace TaskTen.Controllers
         /// <param name="id">The user id.</param>
         /// <response code="204">The user was deleted.</response>
         /// <response code="401">You are not authorized to do this action.</response>
+        /// <response code="403">You are forbidden to do this action.</response>
         /// <response code="404">No user exists with the given id.</response>
-        [Authorize]
         [HttpDelete]
         [Route("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteUser(int id)
         {
@@ -154,7 +157,7 @@ namespace TaskTen.Controllers
             string _currentUserRole = User.FindFirst(ClaimTypes.Role)!.Value;
             if (_currentUserId != id && _currentUserRole != "Admin")
             {
-                return Unauthorized(new { message = "You are not authorized to do this action." });
+                return Forbid("You are forbidden to do this action.");
             }
             await _userService.DeleteUser(id);
             return NoContent();

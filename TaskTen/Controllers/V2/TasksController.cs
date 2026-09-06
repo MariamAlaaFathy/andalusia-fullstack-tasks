@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using TaskTen.DTOs;
+using TaskTen.Helper;
 using TaskTen.Model;
 
 namespace TaskFive.Controllers.v2
@@ -19,10 +20,12 @@ namespace TaskFive.Controllers.v2
     public class TasksController : ControllerBase
     {
         private ITasksService _taskService;
+        private IAuthorizationService _authz;
 
-        public TasksController(ITasksService taskService)
+        public TasksController(ITasksService taskService, IAuthorizationService authz)
         {
             _taskService = taskService;
+            _authz = authz;
         }
 
         /// <summary>
@@ -37,10 +40,7 @@ namespace TaskFive.Controllers.v2
         public async Task<IActionResult> GetTasks([FromQuery] TaskFilterParams paginationParams)
         {
             string currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
-            if (!int.TryParse(currentUserId, out var _currentUserId))
-            {
-                return Unauthorized(new { message = "You are not authorized to do this action." });
-            }
+            int.TryParse(currentUserId, out var _currentUserId);
             var tasks = await _taskService.GetTasks(paginationParams, _currentUserId);
             return Ok(tasks);
         }
@@ -51,20 +51,20 @@ namespace TaskFive.Controllers.v2
         /// <param name="id">The task id.</param>
         /// <response code="200">The requested task.</response>
         /// <response code="401">You are not authorized to do this action.</response>
+        /// <response code="403">You are forbidden to do this action.</response>
         /// <response code="404">No task exists with the given id.</response>
         [HttpGet]
         [Route("{id}")]
         [ProducesResponseType(typeof(TasksDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         public async Task<ActionResult<TasksDTO>> GetTaskById(int id)
         {
-            string currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
-            if (!int.TryParse(currentUserId, out var _currentUserId))
-            {
-                return Unauthorized(new { message = "You are not authorized to do this action." });
-            }
-            return Ok(await _taskService.GetTaskById(id, _currentUserId));
+            var task = await _taskService.GetTaskById(id);
+            var result = await _authz.AuthorizeAsync(User, task, Operations.Read);
+            if (!result.Succeeded) return Forbid();
+            return Ok(task);
         }
 
         /// <summary>
@@ -73,20 +73,20 @@ namespace TaskFive.Controllers.v2
         /// <param name="id">The task id.</param>
         /// <response code="200">The requested task summary.</response>
         /// <response code="401">You are not authorized to do this action.</response>
+        /// <response code="403">You are forbidden to do this action.</response>
         /// <response code="404">No task exists with the given id.</response>
         [HttpGet]
         [Route("summary/{id}")]
         [ProducesResponseType(typeof(TaskSummaryDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         public async Task<ActionResult<TaskSummaryDTO>> GetTaskSummaryById(int id)
         {
-            string currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
-            if (!int.TryParse(currentUserId, out var _currentUserId))
-            {
-                return Unauthorized(new { message = "You are not authorized to do this action." });
-            }
-            return Ok(await _taskService.GetTaskSummaryById(id, _currentUserId));
+            var task = await _taskService.GetTaskSummaryById(id);
+            var result = await _authz.AuthorizeAsync(User, task, Operations.Read);
+            if (!result.Succeeded) return Forbid();
+            return Ok(task);
         }
 
         /// <summary>
@@ -96,21 +96,20 @@ namespace TaskFive.Controllers.v2
         /// <response code="201">The task was created. The response includes a Location header pointing to it.</response>
         /// <response code="400">The request body failed validation, or the due date is in the past.</response>
         /// <response code="401">You are not authorized to do this action.</response>
+        /// <response code="403">You are forbidden to do this action.</response>
         /// <response code="404">The referenced user does not exist.</response>
         /// <response code="409">A task with the same title already exists.</response>
         [HttpPost]
         [ProducesResponseType(typeof(TasksDTO), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
         public async Task<ActionResult<TasksDTO>> CreateTask([FromBody] CreateTaskRequest task)
         {
             string currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
-            if (!int.TryParse(currentUserId, out var _currentUserId))
-            {
-                return Unauthorized(new { message = "You are not authorized to do this action." });
-            }
+            int.TryParse(currentUserId, out var _currentUserId);
             var createdTask = await _taskService.CreateTask(task, _currentUserId);
             return CreatedAtAction(nameof(GetTaskById), new { id = _currentUserId }, createdTask);
         }
@@ -123,23 +122,24 @@ namespace TaskFive.Controllers.v2
         /// <response code="200">The updated task.</response>
         /// <response code="400">The request body failed validation, or the due date is in the past.</response>
         /// <response code="401">You are not authorized to do this action.</response>
+        /// <response code="403">You are forbidden to do this action.</response>
         /// <response code="404">No task exists with the given id.</response>
         /// <response code="409">Another task already has the given title.</response>
+        [Authorize(Policy = "CanManageTasks")]
         [HttpPut]
         [Route("{id}")]
         [ProducesResponseType(typeof(TasksDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
         public async Task<ActionResult<TasksDTO>> UpdateTask(int id, [FromBody] UpdateTaskRequest task)
         {
-            string currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
-            if (!int.TryParse(currentUserId, out var _currentUserId))
-            {
-                return Unauthorized(new { message = "You are not authorized to do this action." });
-            }
-            return Ok(await _taskService.UpdateTask(id, task, _currentUserId));
+            var oldTask = await _taskService.GetTaskById(id);
+            var result = await _authz.AuthorizeAsync(User, oldTask, Operations.Update);
+            if (!result.Succeeded) return Forbid();
+            return Ok(await _taskService.UpdateTask(id, task));
         }
 
         /// <summary>
@@ -148,20 +148,21 @@ namespace TaskFive.Controllers.v2
         /// <param name="id">The task id.</param>
         /// <response code="204">The task was deleted.</response>
         /// <response code="401">You are not authorized to do this action.</response>
+        /// <response code="403">You are forbidden to do this action.</response>
         /// <response code="404">No task exists with the given id.</response>
+        [Authorize(Policy = "CanManageTasks")]
         [HttpDelete]
         [Route("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status403Forbidden)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteTask(int id)
         {
-            string currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
-            if (!int.TryParse(currentUserId, out var _currentUserId))
-            {
-                return Unauthorized(new { title = "You are not authorized to do this action." });
-            }
-            await _taskService.DeleteTask(id, _currentUserId);
+            var task = await _taskService.GetTaskById(id);
+            var result = await _authz.AuthorizeAsync(User, task, Operations.Delete);
+            if (!result.Succeeded) return Forbid();
+            await _taskService.DeleteTask(id);
             return NoContent();
         }
     }
